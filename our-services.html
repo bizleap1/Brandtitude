@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Branditude · Our Services</title>
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <style>
+      /* ========== RESET & BASE ========== */
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      body {
+         background: #0b0b0b;
+         color: #f0f0f0;
+         font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+         line-height: 1.5;
+         -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+         text-decoration: none;
+         color: inherit;
+      }
+
+      ul {
+         list-style: none;
+      }
+
+      /* ========== HEADER ========== */
+      .header {
+         background: #0d0d0d;
+         border-bottom: 1px solid #1f1f1f;
+         padding: 0.6rem 0;
+      }
+
+      .primary-navbar {
+         max-width: 1200px;
+         margin: 0 auto;
+         padding: 0 1.5rem;
+      }
+
+      .navbar {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         flex-wrap: wrap;
+      }
+
+      /* ---- FIXED LOGO ---- */
+      .navbar__logo a {
+         display: block;
+      }
+
+      .navbar__logo img {
+         height: 80px;
+         width: auto;
+         max-width: 100%;
+         object-fit: contain;
+         display: block;
+         filter: brightness(1.1) drop-shadow(0 0 15px rgba(244, 123, 32, 0.15));
+         transition: transform 0.3s;
+      }
+
+      .navbar__logo img:hover {
+         transform: scale(1.05);
+      }
+
+      .navbar__menu {
+         display: flex;
+         align-items: center;
+      }
+
+      .navbar__menu>ul {
+         display: flex;
+         gap: 0.5rem;
+         flex-wrap: wrap;
+      }
+
+      .navbar__item {
+         position: relative;
+      }
+
+      .navbar__dropdown-label {
+         color: #ccc;
+         font-size: 0.9rem;
+         font-weight: 500;
+         padding: 0.6rem 1rem;
+         display: block;
+         transition: color 0.2s;
+         letter-spacing: 0.3px;
+      }
+
+      .navbar__dropdown-label:hover {
+         color: #f47b20;
+      }
+
+      .navbar__sub-menu {
+         position: absolute;
+         top: 100%;
+         left: 0;
+         background: #151515;
+         border: 1px solid #2a2a2a;
+         border-radius: 12px;
+         padding: 0.6rem 0;
+         min-width: 200px;
+         opacity: 0;
+         visibility: hidden;
+         transform: translateY(8px);
+         transition: all 0.25s ease;
+         z-index: 100;
+      }
+
+      .navbar__item:hover .navbar__sub-menu {
+         opacity: 1;
+         visibility: visible;
+         transform: translateY(0);
+      }
+
+      .navbar__sub-menu li a {
+         color: #ccc;
+         padding: 0.5rem 1.2rem;
+         display: block;
+         font-size: 0.85rem;
+         transition: 0.15s;
+      }
+
+      .navbar__sub-menu li a:hover {
+         color: #f47b20;
+         background: #1f1f1f;
+      }
+
+      .navbar__options {
+         display: flex;
+         align-items: center;
+         gap: 1rem;
+      }
+
+      .navbar__mobile-options .btn--secondary {
+         background: transparent;
+         border: 1px solid #f47b20;
+         color: #f47b20;
+         padding: 0.5rem 1.4rem;
+         border-radius: 40px;
+         font-size: 0.85rem;
+         font-weight: 600;
+         transition: all 0.25s;
+         display: inline-block;
+      }
+
+      .navbar__mobile-options .btn--secondary:hover {
+         background: #f47b20;
+         color: #0b0b0b;
+      }
+
+      .open-mobile-menu {
+         background: transparent;
+         border: none;
+         color: #ccc;
+         font-size: 1.4rem;
+         cursor: pointer;
+         display: none;
+      }
+
+      .mobile-menu {
+         position: fixed;
+         top: 0;
+         right: -100%;
+         width: 320px;
+         height: 100%;
+         background: #111;
+         border-left: 1px solid #2a2a2a;
+         transition: right 0.35s ease;
+         z-index: 999;
+         padding: 2rem 1.5rem;
+         overflow-y: auto;
+      }
+
+      .mobile-menu.open {
+         right: 0;
+      }
+
+      .mobile-menu__header {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin-bottom: 2rem;
+      }
+
+      .mobile-menu__header .logo img {
+         height: 40px;
+      }
+
+      .close-mobile-menu {
+         color: #ccc;
+         font-size: 1.6rem;
+      }
+
+      .mobile-menu__list ul {
+         display: flex;
+         flex-direction: column;
+         gap: 0.8rem;
+      }
+
+      .mobile-menu__list ul li a {
+         color: #ddd;
+         font-size: 1rem;
+         padding: 0.5rem 0;
+         display: block;
+         border-bottom: 1px solid #222;
+      }
+
+      .mobile-menu__social {
+         margin-top: 2rem;
+         display: flex;
+         gap: 1rem;
+      }
+
+      .mobile-menu__social a {
+         color: #aaa;
+         font-size: 1.2rem;
+         transition: 0.2s;
+      }
+
+      .mobile-menu__social a:hover {
+         color: #f47b20;
+      }
+
+      .mobile-menu__backdrop {
+         position: fixed;
+         inset: 0;
+         background: rgba(0, 0, 0, 0.6);
+         z-index: 998;
+         opacity: 0;
+         visibility: hidden;
+         transition: 0.3s;
+      }
+
+      .mobile-menu__backdrop.active {
+         opacity: 1;
+         visibility: visible;
+      }
+
+      /* ========== FOOTER ========== */
+      .footer {
+         background: #0c0c0c;
+         border-top: 1px solid #1e1e1e;
+         padding: 3rem 1.5rem 1.5rem;
+      }
+
+      .footer .container {
+         max-width: 1200px;
+         margin: 0 auto;
+      }
+
+      .footer .row {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 2rem;
+      }
+
+      .footer .row.gaper {
+         gap: 2.5rem;
+      }
+
+      .footer__single {
+         flex: 1 1 200px;
+      }
+
+      .footer-logo img {
+         height: 48px;
+         filter: brightness(1.1);
+         margin-bottom: 1rem;
+      }
+
+      .footer__single-meta {
+         display: flex;
+         flex-direction: column;
+         gap: 0.6rem;
+         margin: 1rem 0;
+      }
+
+      .footer__single-meta a {
+         color: #aaa;
+         font-size: 0.9rem;
+         display: flex;
+         align-items: center;
+         gap: 0.6rem;
+         transition: color 0.2s;
+      }
+
+      .footer__single-meta a:hover {
+         color: #f47b20;
+      }
+
+      .footer__single-meta i {
+         width: 18px;
+         color: #f47b20;
+      }
+
+      .footer__cta .btn--secondary {
+         background: transparent;
+         border: 1px solid #f47b20;
+         color: #f47b20;
+         padding: 0.6rem 1.8rem;
+         border-radius: 40px;
+         font-weight: 600;
+         font-size: 0.85rem;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         display: inline-block;
+         transition: 0.25s;
+      }
+
+      .footer__cta .btn--secondary:hover {
+         background: #f47b20;
+         color: #0b0b0b;
+      }
+
+      .footer__single-intro h5 {
+         color: #fff;
+         font-size: 1rem;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         margin-bottom: 1rem;
+         font-weight: 600;
+      }
+
+      .footer__single-content ul {
+         display: flex;
+         flex-direction: column;
+         gap: 0.5rem;
+      }
+
+      .footer__single-content ul li a {
+         color: #aaa;
+         font-size: 0.9rem;
+         transition: 0.2s;
+      }
+
+      .footer__single-content ul li a:hover {
+         color: #f47b20;
+      }
+
+      .footer__single-content p {
+         color: #aaa;
+         font-size: 0.9rem;
+         line-height: 1.6;
+         margin-bottom: 1rem;
+      }
+
+      .input-email {
+         display: flex;
+         align-items: center;
+         background: #1a1a1a;
+         border-radius: 40px;
+         border: 1px solid #2a2a2a;
+         overflow: hidden;
+         transition: 0.2s;
+      }
+
+      .input-email:focus-within {
+         border-color: #f47b20;
+      }
+
+      .input-email input {
+         flex: 1;
+         background: transparent;
+         border: none;
+         padding: 0.7rem 1.2rem;
+         color: #eee;
+         font-size: 0.9rem;
+         outline: none;
+      }
+
+      .input-email input::placeholder {
+         color: #666;
+      }
+
+      .input-email .subscribe {
+         background: #f47b20;
+         color: #0b0b0b;
+         padding: 0.7rem 1.2rem;
+         border: none;
+         cursor: pointer;
+         font-size: 1rem;
+         transition: 0.2s;
+         display: flex;
+         align-items: center;
+      }
+
+      .input-email .subscribe:hover {
+         background: #ff8c2e;
+      }
+
+      .footer__copyright {
+         border-top: 1px solid #1e1e1e;
+         margin-top: 2.5rem;
+         padding-top: 1.5rem;
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: space-between;
+         align-items: center;
+      }
+
+      .footer__copyright-text p {
+         color: #777;
+         font-size: 0.85rem;
+      }
+
+      .footer__copyright-text p a {
+         color: #f47b20;
+      }
+
+      .social {
+         display: flex;
+         gap: 0.8rem;
+      }
+
+      .social a {
+         color: #888;
+         font-size: 1rem;
+         width: 38px;
+         height: 38px;
+         border-radius: 50%;
+         border: 1px solid #2a2a2a;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         transition: 0.2s;
+      }
+
+      .social a:hover {
+         background: #f47b20;
+         color: #0b0b0b;
+         border-color: #f47b20;
+      }
+
+      /* ========== MAIN CONTENT ========== */
+      .branditude-services {
+         max-width: 1200px;
+         margin: 0 auto;
+         padding: 1rem 1.5rem 3rem;
+      }
+
+      /* ---- HERO ---- */
+      .services-hero {
+         padding: 2.5rem 0 3rem;
+         border-bottom: 1px solid #1f1f1f;
+         position: relative;
+         overflow: hidden;
+         text-align: center;
+      }
+
+      .services-hero-label {
+         font-size: 0.75rem;
+         letter-spacing: 3px;
+         text-transform: uppercase;
+         color: #f47b20;
+         font-weight: 600;
+         margin-bottom: 0.6rem;
+      }
+
+      .services-hero h1 {
+         font-size: clamp(2.2rem, 5vw, 3.6rem);
+         font-weight: 700;
+         line-height: 1.1;
+         letter-spacing: -0.02em;
+         color: #fff;
+         margin: 0.5rem 0 1rem;
+      }
+
+      .services-hero h1 i {
+         color: #f47b20;
+         font-style: normal;
+      }
+
+      .services-hero p {
+         font-size: 1.1rem;
+         color: #bcbcbc;
+         max-width: 650px;
+         margin: 0 auto;
+         line-height: 1.6;
+      }
+
+      .services-hero .glow-orange {
+         position: absolute;
+         width: 400px;
+         height: 400px;
+         background: radial-gradient(circle, rgba(244, 123, 32, 0.08) 0%, transparent 70%);
+         border-radius: 50%;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         animation: pulseGlow 6s infinite alternate;
+         pointer-events: none;
+      }
+
+      @keyframes pulseGlow {
+         0% {
+            opacity: 0.3;
+            transform: translate(-50%, -50%) scale(0.9);
+         }
+
+         100% {
+            opacity: 0.8;
+            transform: translate(-50%, -50%) scale(1.2);
+         }
+      }
+
+      /* ---- SECTION HEADING ---- */
+      .section-heading {
+         text-align: center;
+         padding: 3rem 0 2rem;
+      }
+
+      .section-heading .label {
+         font-size: 0.75rem;
+         letter-spacing: 3px;
+         text-transform: uppercase;
+         color: #f47b20;
+         font-weight: 600;
+         margin-bottom: 0.5rem;
+      }
+
+      .section-heading h2 {
+         font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+         font-weight: 600;
+         letter-spacing: -0.02em;
+         color: #fff;
+      }
+
+      .section-heading h2 i {
+         color: #f47b20;
+         font-style: normal;
+      }
+
+      .section-heading p {
+         color: #aaa;
+         max-width: 600px;
+         margin: 0.6rem auto 0;
+         font-size: 1.05rem;
+      }
+
+      /* ---- SERVICE CARDS GRID ---- */
+      .services-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+         gap: 2rem;
+         margin-top: 1rem;
+      }
+
+      .service-card {
+         background: #131313;
+         border-radius: 24px;
+         padding: 2rem 1.6rem 1.6rem;
+         border: 1px solid #222;
+         transition: all 0.3s;
+         position: relative;
+         overflow: hidden;
+         display: flex;
+         flex-direction: column;
+      }
+
+      .service-card::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 3px;
+         background: linear-gradient(90deg, #f47b20, transparent);
+         transform: scaleX(0);
+         transform-origin: left;
+         transition: transform 0.4s ease;
+      }
+
+      .service-card:hover::before {
+         transform: scaleX(1);
+      }
+
+      .service-card:hover {
+         transform: translateY(-8px);
+         border-color: #f47b20;
+         box-shadow: 0 12px 40px rgba(244, 123, 32, 0.08);
+      }
+
+      .service-card .num {
+         font-size: 0.8rem;
+         color: #f47b20;
+         font-weight: 600;
+         letter-spacing: 2px;
+         margin-bottom: 0.5rem;
+         display: flex;
+         align-items: center;
+         gap: 0.5rem;
+      }
+
+      .service-card .num i {
+         font-size: 0.7rem;
+         transition: transform 0.3s;
+      }
+
+      .service-card:hover .num i {
+         transform: translateX(5px);
+      }
+
+      .service-card h3 {
+         font-size: 1.3rem;
+         color: #fff;
+         font-weight: 600;
+         margin-bottom: 0.8rem;
+      }
+
+      .service-card ul {
+         display: flex;
+         flex-direction: column;
+         gap: 0.5rem;
+         margin-bottom: 1.5rem;
+         flex-grow: 1;
+      }
+
+      .service-card ul li {
+         color: #aaa;
+         font-size: 0.92rem;
+         display: flex;
+         align-items: center;
+         gap: 0.6rem;
+      }
+
+      .service-card ul li::before {
+         content: '';
+         width: 5px;
+         height: 5px;
+         background: #f47b20;
+         border-radius: 50%;
+         flex-shrink: 0;
+      }
+
+      .service-card .cta {
+         display: inline-flex;
+         align-items: center;
+         gap: 0.5rem;
+         color: #f47b20;
+         font-size: 0.88rem;
+         font-weight: 600;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         transition: gap 0.3s;
+         margin-top: auto;
+      }
+
+      .service-card .cta i {
+         font-size: 0.75rem;
+         transition: transform 0.3s;
+      }
+
+      .service-card .cta:hover {
+         gap: 0.8rem;
+      }
+
+      .service-card .cta:hover i {
+         transform: translate(3px, -3px);
+      }
+
+      /* ---- PROCESS TIMELINE ---- */
+      .process-section {
+         padding: 3rem 0 2rem;
+      }
+
+      .process-timeline {
+         display: flex;
+         flex-direction: column;
+         gap: 0;
+         margin-top: 1rem;
+         position: relative;
+      }
+
+      .process-step {
+         display: flex;
+         gap: 1.5rem;
+         padding: 1.5rem 1.5rem 1.5rem 0;
+         border-bottom: 1px solid #1e1e1e;
+         transition: all 0.3s;
+         position: relative;
+      }
+
+      .process-step:last-child {
+         border-bottom: none;
+      }
+
+      .process-step:hover {
+         background: rgba(244, 123, 32, 0.03);
+         border-radius: 12px;
+         padding-left: 1rem;
+      }
+
+      .process-step .step-num {
+         width: 50px;
+         height: 50px;
+         border-radius: 14px;
+         background: #1a1a1a;
+         border: 1px solid #2a2a2a;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-weight: 700;
+         color: #f47b20;
+         font-size: 1.1rem;
+         flex-shrink: 0;
+         transition: 0.3s;
+      }
+
+      .process-step:hover .step-num {
+         background: #f47b20;
+         color: #0b0b0b;
+         border-color: #f47b20;
+         box-shadow: 0 0 20px rgba(244, 123, 32, 0.25);
+      }
+
+      .process-step .step-content h4 {
+         color: #fff;
+         font-size: 1.15rem;
+         font-weight: 600;
+         margin-bottom: 0.4rem;
+      }
+
+      .process-step .step-content p {
+         color: #aaa;
+         font-size: 0.95rem;
+         line-height: 1.6;
+         max-width: 700px;
+      }
+
+      /* ---- CTA ---- */
+      .services-cta {
+         background: #0a0a0a;
+         border-radius: 40px;
+         padding: 3.5rem 2rem;
+         text-align: center;
+         margin: 3rem 0 1rem;
+         border: 1px solid #222;
+         position: relative;
+         overflow: hidden;
+      }
+
+      .services-cta::after {
+         content: '';
+         position: absolute;
+         width: 400px;
+         height: 400px;
+         background: radial-gradient(circle, rgba(244, 123, 32, 0.08) 0%, transparent 70%);
+         top: -100px;
+         right: -100px;
+         border-radius: 50%;
+         animation: pulseGlow 6s infinite alternate;
+      }
+
+      .services-cta h2 {
+         font-size: 2.2rem;
+         font-weight: 700;
+         position: relative;
+         z-index: 2;
+         color: #fff;
+      }
+
+      .services-cta h2 i {
+         color: #f47b20;
+         font-style: normal;
+      }
+
+      .services-cta p {
+         color: #b5b5b5;
+         margin: 0.6rem 0 2rem;
+         font-size: 1.1rem;
+         position: relative;
+         z-index: 2;
+      }
+
+      .services-cta .cta-buttons {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         gap: 1rem;
+         position: relative;
+         z-index: 2;
+      }
+
+      .btn-primary {
+         background: #f47b20;
+         border: none;
+         color: #0b0b0b;
+         font-weight: 600;
+         padding: 0.8rem 2.2rem;
+         border-radius: 40px;
+         font-size: 0.95rem;
+         cursor: pointer;
+         transition: all 0.25s;
+         text-decoration: none;
+         display: inline-flex;
+         align-items: center;
+         gap: 0.5rem;
+         box-shadow: 0 0 15px rgba(244, 123, 32, 0.2);
+      }
+
+      .btn-primary:hover {
+         background: #ff8c2e;
+         transform: scale(1.03);
+         box-shadow: 0 0 30px rgba(244, 123, 32, 0.4);
+      }
+
+      .btn-secondary {
+         background: transparent;
+         border: 1px solid #3a3a3a;
+         color: #e0e0e0;
+         font-weight: 500;
+         padding: 0.8rem 2.2rem;
+         border-radius: 40px;
+         font-size: 0.95rem;
+         cursor: pointer;
+         transition: all 0.25s;
+         text-decoration: none;
+         display: inline-flex;
+         align-items: center;
+         gap: 0.5rem;
+      }
+
+      .btn-secondary:hover {
+         border-color: #f47b20;
+         color: #f47b20;
+         background: rgba(244, 123, 32, 0.05);
+      }
+
+      /* ---- REVEAL ---- */
+      .reveal {
+         opacity: 0;
+         transform: translateY(30px);
+         transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .reveal.visible {
+         opacity: 1;
+         transform: translateY(0);
+      }
+
+      /* ---- RESPONSIVE ---- */
+      @media (max-width: 992px) {
+         .navbar__logo img {
+            height: 70px;
+         }
+      }
+
+      @media (max-width: 768px) {
+         .navbar__logo img {
+            height: 60px;
+         }
+
+         .navbar__menu {
+            display: none;
+         }
+
+         .open-mobile-menu {
+            display: block;
+         }
+
+         .footer .row {
+            flex-direction: column;
+            gap: 1.5rem;
+         }
+
+         .footer__copyright {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+         }
+
+         .social {
+            justify-content: center;
+         }
+
+         .services-grid {
+            grid-template-columns: 1fr;
+         }
+
+         .process-step {
+            flex-direction: column;
+            gap: 1rem;
+         }
+      }
+
+      @media (max-width: 480px) {
+         .branditude-services {
+            padding: 0 0.8rem;
+         }
+
+         .navbar__logo img {
+            height: 50px;
+         }
+
+         .services-cta h2 {
+            font-size: 1.7rem;
+         }
+      }
+   </style>
+</head>
+
+<body>
+
+   <!-- ====== HEADER ====== -->
+   <header class="header">
+      <div class="primary-navbar cmn-nav">
+         <div class="container" style="max-width:1200px; margin:0 auto; padding:0 1rem;">
+            <div class="row">
+               <div class="col-12" style="width:100%;">
+                  <nav class="navbar p-0">
+                     <div class="navbar__logo">
+                        <a href="index.html" aria-label="go to home">
+                           <img src="assets/images/banner/brandx-removebg-preview.png" alt="Branditude Logo">
+                        </a>
+                     </div>
+                     <div class="navbar__menu">
+                        <ul>
+                           <li class="navbar__item navbar__item--has-children nav-fade">
+                              <a href="index.html" aria-label="dropdown menu" class="navbar__dropdown-label">Home</a>
+                              
+                           </li>
+                           <li class="navbar__item navbar__item--has-children nav-fade">
+                              <a href="about-us.html" aria-label="dropdown menu" class="navbar__dropdown-label">About
+                                 Us</a>
+                              
+                           </li>
+                           <li class="navbar__item navbar__item--has-children nav-fade">
+                              <a href="our-services.html" aria-label="dropdown menu"
+                                 class="navbar__dropdown-label">Services</a>
+                             
+                           </li>
+                           <li class="navbar__item navbar__item--has-children nav-fade">
+                              <a href="index-four.html" aria-label="dropdown menu"
+                                 class="navbar__dropdown-label">Projects</a>
+                              
+                           </li>
+                           <li class="navbar__item navbar__item--has-children nav-fade">
+                              <a href="our-teams.html" aria-label="dropdown menu"
+                                 class="navbar__dropdown-label navbar__dropdown-label-sub">Team</a>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="navbar__options">
+                        <div class="navbar__mobile-options d-none d-sm-flex">
+                           <a href="https://wa.me/919370077727?text=Hi%20Branditude%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services"
+                              class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Let's Talk</a>
+                        </div>
+                        <button class="open-mobile-menu d-flex d-xl-none" aria-label="toggle mobile menu">
+                           <i class="fa-light fa-bars-staggered"></i>
+                        </button>
+                     </div>
+                  </nav>
+               </div>
+            </div>
+         </div>
+         <!-- mobile menu -->
+         <div class="mobile-menu">
+            <nav class="mobile-menu__wrapper">
+               <div class="mobile-menu__header nav-fade">
+                  <div class="logo"><a href="index.html"><img src="assets/images/banner/brandx-removebg-preview.png" alt
+                           style="height:40px;"></a></div>
+                  <a href="javascript:void(0)" aria-label="close mobile menu" class="close-mobile-menu"><i
+                        class="fa-light fa-xmark-large"></i></a>
+               </div>
+               <div class="mobile-menu__list">
+                  <ul>
+                     <li><a href="index.html">Home</a></li>
+                     <li><a href="about-us.html">About Us</a></li>
+                     <li><a href="our-services.html">Services</a></li>
+                     <li><a href="index-four.html">Projects</a></li>
+                     <li><a href="our-teams.html">Team</a></li>
+                  </ul>
+               </div>
+               <div class="mobile-menu__social social nav-fade">
+                  <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                  <a href="https://www.twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="https://www.pinterest.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                  <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+               </div>
+            </nav>
+         </div>
+         <div class="mobile-menu__backdrop"></div>
+      </div>
+   </header>
+
+   <!-- ====== MAIN CONTENT ====== -->
+   <main class="branditude-services">
+
+      <!-- HERO -->
+      <section class="services-hero">
+         <div class="glow-orange"></div>
+         <div class="services-hero-label">✦ WHAT WE DO</div>
+         <h1>Services Built To <i>Grow Your Brand</i>.</h1>
+         <p>From strategy to execution, we deliver end-to-end digital solutions designed to help your business stand
+            out, connect with the right audience, and achieve measurable growth.</p>
+      </section>
+
+      <!-- SERVICES GRID -->
+      <section>
+         <div class="section-heading reveal">
+            <div class="label">OUR EXPERTISE</div>
+            <h2>What We <i>Offer</i></h2>
+            <p>Comprehensive digital services tailored to your business goals.</p>
+         </div>
+         <div class="services-grid">
+            <!-- Meta Ads -->
+            <div class="service-card reveal">
+               <div class="num">01 <i class="fas fa-arrow-right"></i></div>
+               <h3>Meta Ads</h3>
+               <ul>
+                  <li>Facebook &amp; Instagram Ads</li>
+                  <li>Campaign Strategy</li>
+                  <li>Audience Targeting</li>
+                  <li>Creative Ad Designing</li>
+                  <li>Lead Generation</li>
+               </ul>
+               <a href="service-single.html" class="cta">Service Details <i class="fas fa-arrow-up-right"></i></a>
+            </div>
+            <!-- Swiggy Zomato -->
+            <div class="service-card reveal">
+               <div class="num">02 <i class="fas fa-arrow-right"></i></div>
+               <h3>Swiggy Zomato Optimization</h3>
+               <ul>
+                  <li>Search Optimization</li>
+                  <li>Display Campaigns</li>
+                  <li>Menu &amp; Offer Strategy</li>
+                  <li>Remarketing</li>
+                  <li>Analytics &amp; Reporting</li>
+               </ul>
+               <a href="service-single.html" class="cta">Service Details <i class="fas fa-arrow-up-right"></i></a>
+            </div>
+            <!-- Digital Branding -->
+            <div class="service-card reveal">
+               <div class="num">03 <i class="fas fa-arrow-right"></i></div>
+               <h3>Digital Branding</h3>
+               <ul>
+                  <li>Brand Identity</li>
+                  <li>Brand Strategy</li>
+                  <li>Visual Design</li>
+                  <li>Content Creation</li>
+                  <li>Engagement</li>
+               </ul>
+               <a href="service-single.html" class="cta">Service Details <i class="fas fa-arrow-up-right"></i></a>
+            </div>
+            <!-- Website & App -->
+            <div class="service-card reveal">
+               <div class="num">04 <i class="fas fa-arrow-right"></i></div>
+               <h3>Website &amp; App</h3>
+               <ul>
+                  <li>UI/UX Design</li>
+                  <li>Frontend Development</li>
+                  <li>Backend Development</li>
+                  <li>Mobile Apps</li>
+                  <li>Support &amp; Maintenance</li>
+               </ul>
+               <a href="service-single.html" class="cta">Service Details <i class="fas fa-arrow-up-right"></i></a>
+            </div>
+            <!-- Google Ads -->
+            <div class="service-card reveal">
+               <div class="num">05 <i class="fas fa-arrow-right"></i></div>
+               <h3>Google Ads</h3>
+               <ul>
+                  <li>Search Campaigns</li>
+                  <li>Display Ads</li>
+                  <li>Shopping Ads</li>
+                  <li>YouTube Ads</li>
+                  <li>Performance Tracking</li>
+               </ul>
+               <a href="service-single.html" class="cta">Service Details <i class="fas fa-arrow-up-right"></i></a>
+            </div>
+            <!-- SEO -->
+            <div class="service-card reveal">
+               <div class="num">06 <i class="fas fa-arrow-right"></i></div>
+               <h3>SEO</h3>
+               <ul>
+                  <li>On-Page SEO</li>
+                  <li>Off-Page SEO</li>
+                  <li>Technical SEO</li>
+                  <li>Keyword Research</li>
+                  <li>Content Optimization</li>
+               </ul>
+               <a href="service-single.html" class="cta">Service Details <i class="fas fa-arrow-up-right"></i></a>
+            </div>
+         </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="process-section">
+         <div class="section-heading reveal">
+            <div class="label">HOW WE WORK</div>
+            <h2>Our Working <i>Process</i></h2>
+            <p>A clear, proven approach that turns ideas into impactful digital results.</p>
+         </div>
+         <div class="process-timeline reveal">
+            <div class="process-step">
+               <div class="step-num">01</div>
+               <div class="step-content">
+                  <h4>Discovery &amp; Strategy</h4>
+                  <p>We start by understanding your business, goals, and target audience. Through research and analysis,
+                     we build a strategic foundation for your brand.</p>
+               </div>
+            </div>
+            <div class="process-step">
+               <div class="step-num">02</div>
+               <div class="step-content">
+                  <h4>Planning &amp; Concept</h4>
+                  <p>Based on insights, we create a tailored plan and creative concept that aligns with your vision and
+                     delivers measurable results.</p>
+               </div>
+            </div>
+            <div class="process-step">
+               <div class="step-num">03</div>
+               <div class="step-content">
+                  <h4>Design &amp; Development</h4>
+                  <p>Our team brings ideas to life with stunning design and robust development, ensuring a seamless
+                     digital experience across all platforms.</p>
+               </div>
+            </div>
+            <div class="process-step">
+               <div class="step-num">04</div>
+               <div class="step-content">
+                  <h4>Launch &amp; Optimize</h4>
+                  <p>We launch your campaign or product with precision, then continuously monitor and optimize for
+                     performance and growth.</p>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="services-cta reveal">
+         <h2>Ready To Grow <i>Your Brand</i>?</h2>
+         <p>Let's discuss how Branditude can help you achieve your digital goals.</p>
+         <div class="cta-buttons">
+            <a href="contact-us.html" class="btn-primary">Start a Project <i class="fas fa-arrow-right"></i></a>
+            <a href="index-four.html" class="btn-secondary">View Our Work</a>
+         </div>
+      </section>
+
+   </main>
+
+   <!-- ====== FOOTER ====== -->
+   <footer class="footer section pb-0" data-background="assets/images/footer/footer-bg.png">
+      <div class="container">
+         <div class="row gaper">
+            <div class="col-12 col-lg-5 col-xl-6">
+               <div class="footer__single">
+                  <a href="index.html" class="footer-logo">
+                     <img src="assets/images/banner/brandx-removebg-preview.png" alt="Branditude">
+                  </a>
+                  <div class="footer__single-meta">
+                     <a href="https://maps.app.goo.gl/fCzk3XpfRieBic6k7" target="_blank">
+                        <i class="fa-sharp fa-solid fa-location-dot"></i> KHAMLA,NAGPUR 440025
+                     </a>
+                     <a href="tel:937007727">
+                        <i class="fa-sharp fa-solid fa-phone-volume"></i> 9370077727
+                     </a>
+                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=branditudeglobal@gmail.com" target="_blank">
+                        <i class="fa-sharp fa-solid fa-envelope"></i> branditudeglobal@gmail.com
+                     </a>
+                  </div>
+                  <div class="footer__cta text-start">
+                     <a href="contact-us.html" class="btn btn--secondary">book a call now</a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-12 col-lg-2 col-xl-2">
+               <div class="footer__single">
+                  <div class="footer__single-intro">
+                     <h5>discover</h5>
+                  </div>
+                  <div class="footer__single-content">
+                     <ul>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="service-single.html">service</a></li>
+                        <li><a href="contact-us.html">contact-us</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="col-12 col-lg-5 col-xl-4">
+               <div class="footer__single">
+                  <div class="footer__single-intro">
+                     <h5>Subscribe our newsletter</h5>
+                  </div>
+                  <div class="footer__single-content">
+                     <p>Branditude empowers businesses with creative branding, digital marketing, SEO, social media
+                        management, and advertising solutions that inspire growth and success.</p>
+                     <form action="#" method="post">
+                        <div class="input-email">
+                           <input type="email" name="subscribe-news" id="subscribeNews" placeholder="Enter Your Email"
+                              required>
+                           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=branditudeglobal@gmail.com&su=Newsletter%20Subscription&body=Hi%20Branditude%20Global%2C%0A%0AI%20would%20like%20to%20subscribe%20to%20your%20newsletter."
+                              class="subscribe" target="_blank" aria-label="Send email to Branditude Global">
+                              <i class="fa-sharp fa-solid fa-paper-plane"></i>
+                           </a>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-12">
+               <div class="footer__copyright">
+                  <div class="row align-items-center gaper">
+                     <div class="col-12 col-lg-8">
+                        <div class="footer__copyright-text text-center text-lg-start">
+                           <p>Copyright &copy; <span id="copyYear"></span> Branditude <a
+                                 href="https://themeforest.net/user/pixel-plus/" target="_blank"></a>. All Rights
+                              Reserved</p>
+                        </div>
+                     </div>
+                     <div class="col-12 col-lg-4">
+                        <div class="social justify-content-center justify-content-lg-end">
+                           <a href="https://www.facebook.com/" target="_blank"><i
+                                 class="fa-brands fa-facebook-f"></i></a>
+                           <a href="https://www.twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                           <a href="https://www.pinterest.com/" target="_blank"><i
+                                 class="fa-brands fa-linkedin-in"></i></a>
+                           <a href="https://www.instagram.com/" target="_blank"><i
+                                 class="fa-brands fa-instagram"></i></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </footer>
+
+   <!-- ====== SCRIPTS ====== -->
+   <script>
+      (function () {
+         // Reveal on scroll
+         const reveals = document.querySelectorAll('.reveal');
+         const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+               if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+         }, { threshold: 0.12 });
+         reveals.forEach(el => observer.observe(el));
+
+         // Mobile menu toggle
+         const openBtn = document.querySelector('.open-mobile-menu');
+         const closeBtn = document.querySelector('.close-mobile-menu');
+         const mobileMenu = document.querySelector('.mobile-menu');
+         const backdrop = document.querySelector('.mobile-menu__backdrop');
+         if (openBtn && mobileMenu && backdrop) {
+            openBtn.addEventListener('click', () => {
+               mobileMenu.classList.add('open');
+               backdrop.classList.add('active');
+            });
+            closeBtn.addEventListener('click', () => {
+               mobileMenu.classList.remove('open');
+               backdrop.classList.remove('active');
+            });
+            backdrop.addEventListener('click', () => {
+               mobileMenu.classList.remove('open');
+               backdrop.classList.remove('active');
+            });
+         }
+
+         // Dynamic copyright year
+         const yearEl = document.getElementById('copyYear');
+         if (yearEl) yearEl.textContent = new Date().getFullYear();
+      })();
+   </script>
+</body>
+
+</html>

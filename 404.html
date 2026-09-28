@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from ex-coders.com/php-template/xpovio/404.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Jul 2026 09:14:01 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
+<head>
+   <!-- required meta -->
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- #favicon -->
+   <link rel="shortcut icon" href="assets/images/brandtitute.png" type="image/x-icon">
+   <!-- #title -->
+   <title>branditude` · Swiggy Zomato Optimization</title>
+   <!-- #keywords -->
+   <meta name="keywords" content="creative, agency, portfolio, swiggy, zomato, optimization">
+   <!-- #description -->
+   <meta name="description" content="Swiggy Zomato optimization page with animated insights">
+   <!-- ==== css dependencies start ==== -->
+   <!-- bootstrap five css -->
+   <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+   <!-- glyphter css -->
+   <link rel="stylesheet" href="assets/vendor/glyyphter/css/xpovio.css">
+   <!-- font awesome six css -->
+   <link rel="stylesheet" href="assets/vendor/font-awesome/css/all.css">
+   <!-- nice select css -->
+   <link rel="stylesheet" href="assets/vendor/nice-select/css/nice-select.css">
+   <!-- magnific popup css -->
+   <link rel="stylesheet" href="assets/vendor/magnific-popup/css/magnific-popup.css">
+   <!-- slick css -->
+   <link rel="stylesheet" href="assets/vendor/slick/css/slick.css">
+   <!-- ==== / css dependencies end ==== -->
+   <!-- main css -->
+   <link rel="stylesheet" href="assets/css/main.min.css">
+   
+
+   <!-- additional inline style for optimization cards / pdf upload -->
+   <style>
+      /* optimization extra styles */
+      .optimization-grid .opt-card {
+         background: #2125294f;
+         backdrop-filter: blur(6px);
+         border: 1px solid rgba(255, 255, 255, 0.5);
+         border-radius: 28px;
+         padding: 1.8rem 1.5rem;
+         transition: 0.25s ease;
+         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+         height: 100%;
+      }
+      .optimization-grid .opt-card:hover {
+         transform: translateY(-6px);
+         border-color: #f97316;
+         box-shadow: 0 20px 40px rgba(249, 115, 22, 0.08);
+      }
+      .opt-icon-big {
+         font-size: 2.6rem;
+         color: #f97316;
+         background: rgba(249, 115, 22, 0.06);
+         width: 60px;
+         height: 60px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         border-radius: 18px;
+         margin-bottom: 0.8rem;
+         transition: 0.2s;
+      }
+      .opt-card:hover .opt-icon-big {
+         background: #f97316;
+         color: #121111;
+      }
+      .opt-card h4 {
+         font-weight: 700;
+         font-size: 1.2rem;
+         margin-bottom: 0.3rem;
+      }
+      .opt-card p {
+         color: #5a4a3e;
+         font-size: 0.9rem;
+         margin-bottom: 0.5rem;
+      }
+      .opt-tag {
+         background: #f2ede8;
+         padding: 0.15rem 0.9rem;
+         border-radius: 40px;
+         font-size: 0.7rem;
+         font-weight: 600;
+         letter-spacing: 0.3px;
+         color: #4b3a2e;
+         display: inline-block;
+         border: 1px solid #e5dbd3;
+      }
+
+      /* pdf upload area */
+      .upload-pdf-area {
+         background: #8cc6f2;
+         border-radius: 80px;
+         padding: 0.3rem 0.3rem 0.3rem 1.8rem;
+         display: inline-flex;
+         align-items: center;
+         flex-wrap: wrap;
+         gap: 1rem;
+         border: 1px solid #f0e7df;
+         backdrop-filter: blur(4px);
+      }
+      .upload-pdf-area label {
+         display: flex;
+         align-items: center;
+         gap: 8px;
+         cursor: pointer;
+         font-weight: 500;
+         color: #2d221c;
+      }
+      .upload-pdf-area input[type="file"] {
+         display: none;
+      }
+      .pdf-status-badge {
+         background: rgb(14, 13, 13);
+         padding: 0.2rem 1.2rem;
+         border-radius: 40px;
+         font-size: 0.8rem;
+         border: 1px solid #e5dbd3;
+      }
+      .progress-sim {
+         height: 6px;
+         background: #0b0b0b;
+         border-radius: 10px;
+         overflow: hidden;
+         width: 120px;
+      }
+      .progress-sim .fill {
+         height: 100%;
+         width: 68%;
+         background: linear-gradient(90deg, #f97316, #ea580c);
+         border-radius: 10px;
+         animation: fillProgress 2.8s ease-in-out infinite alternate;
+      }
+      @keyframes fillProgress {
+         0% { width: 40%; }
+         100% { width: 85%; }
+      }
+      .badge-pulse {
+         background: rgba(249, 115, 22, 0.06);
+         padding: 0.25rem 1.2rem;
+         border-radius: 60px;
+         border: 1px solid #fde4d0;
+         font-size: 0.8rem;
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+      }
+      .badge-pulse i {
+         color: #f97316;
+      }
+      .fade-top {
+         animation: fadeUp 0.8s ease forwards;
+         opacity: 0;
+      }
+      @keyframes fadeUp {
+         0% { opacity: 0; transform: translateY(20px); }
+         100% { opacity: 1; transform: translateY(0); }
+      }
+      .section-title-custom {
+         font-weight: 700;
+         letter-spacing: -0.3px;
+      }
+      .text-orange {
+         color: #f97316;
+      }
+      .gap-2 { gap: 0.8rem; }
+   </style>
+</head>
+
+
+<body>
+   <!--[if lte IE 9]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+      <![endif]-->
+   <div class="my-app">
+      <!-- Preloader Start -->
+      <!-- ==== preloader start ==== -->
+      <div id="preloader">
+         <div id="loader"></div>
+      </div>
+      <!-- ==== / preloader end ==== -->
+      <!-- Cursor Area Start -->
+      <!-- ==== mouse cursor drag start ==== -->
+      <div class="mouseCursor cursor-outer"></div>
+      <div class="mouseCursor cursor-inner">
+         <span>Drag</span>
+      </div>
+      <!-- ==== / mouse cursor drag end ==== -->
+
+      <!-- Header Section Start (exactly as in file) -->
+      <!-- ==== header start ==== -->
+      <header class="header">
+         <div class="primary-navbar cmn-nav">
+            <div class="container">
+               <div class="row">
+                  <div class="col-12">
+                     <nav class="navbar p-0">
+                        <div class="navbar__logo">
+                           <a href="index.html" aria-label="go to home">
+                              <img src="assets/images/brandx.png" alt="Image">
+                           </a>
+                        </div>
+                        <div class="navbar__menu">
+                           <ul >
+                              <li class="navbar__item navbar__item--has-children nav-fade">
+                                 <a href="index.html" aria-label="dropdown menu" class="navbar__dropdown-label">Home</a>
+                                 <ul class="navbar__sub-menu navbar__sub-menu--lg">
+                                    <li>
+                                       <a href="index.html">Creative Agency</a>
+                                    </li>
+                                    <li>
+                                       <a href="index-light.html">Creative Agency Light</a>
+                                    </li>
+                                    <li>
+                                       <a href="index-two.html">Digital Agency</a>
+                                    </li>
+                                    <li>
+                                       <a href="index-two-light.html">Digital Agency Light</a>
+                                    </li>
+                                    <li>
+                                       <a href="index-three.html">It Solution</a>
+                                    </li>
+                                    <li>
+                                       <a href="index-three-light.html">It Solution Light</a>
+                                    </li>
+                                    <li>
+                                       <a href="index-four.html">Personal Portfolio</a>
+                                    </li>
+                                    <li>
+                                       <a href="index-four-light.html">Personal Portfolio Light</a>
+                                    </li>
+                                    <li>
+                                       <a href="index-five.html">Interactive Portfolio</a>
+                                    </li>
+                                    <li>
+                                       <a href="index-five-light.html">Interactive Portfolio Light</a>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="navbar__item navbar__item--has-children nav-fade">
+                                 <a href="about-us.html" aria-label="dropdown menu" class="navbar__dropdown-label">About Us</a>
+                                 <ul class="navbar__sub-menu">
+                                    <li>
+                                       <a href="our-services.html">Our Services</a>
+                                    </li>
+                                    <li>
+                                       <a href="service-single.html">Service Details</a>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="navbar__item navbar__item--has-children nav-fade">
+                                 <a href="our-services.html" aria-label="dropdown menu" class="navbar__dropdown-label">Services</a>
+                                 <ul class="navbar__sub-menu">
+                                    <li>
+                                       <a href="our-services.html">Our Services</a>
+                                    </li>
+                                    <li>
+                                       <a href="service-single.html">Service Details</a>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="navbar__item navbar__item--has-children nav-fade">
+                                 <a href="our-projects.html" aria-label="dropdown menu" class="navbar__dropdown-label">Projects</a>
+                                  <ul class="navbar__sub-menu">
+                              <li>
+                                 <a href="index-four.html">Our Projects</a>
+                              </li>
+                              <li>
+                                 <a href="project-single.html">Project Details</a>
+                              </li>
+                           </ul>
+                              </li>
+                              <li class="navbar__item navbar__item--has-children nav-fade">
+                                 
+                                   
+                                       <a href="our-teams.html" aria-label="dropdown menu"
+                                          class="navbar__dropdown-label navbar__dropdown-label-sub">Team</a>
+                                       
+                                    </li>
+                                    
+                                 </ul>
+                              </li>
+                              
+                           </ul>
+                        </div>
+                        <div class="navbar__options">
+                           <div class="navbar__mobile-options d-none d-sm-flex">
+                              <a href="contact-us.html" class="btn btn--secondary">Let's Talk</a>
+                           </div>
+                           <button class="open-mobile-menu d-flex d-xl-none" aria-label="toggle mobile menu">
+                              <i class="fa-light fa-bars-staggered"></i>
+                           </button>
+                        </div>
+                     </nav>
+                  </div>
+               </div>
+            </div>
+            <!-- ==== mobile menu start ==== -->
+            <div class="mobile-menu">
+               <nav class="mobile-menu__wrapper">
+                  <div class="mobile-menu__header nav-fade">
+                     <div class="logo">
+                        <a href="index.html"><img src="assets/images/logo.png" alt="" title=""></a>
+                     </div>
+                     <a href="javascript:void(0)" aria-label="close mobile menu" class="close-mobile-menu">
+                        <i class="fa-light fa-xmark-large"></i>
+                     </a>
+                  </div>
+                  <div class="mobile-menu__list"></div>
+                  <div class="mobile-menu__options d-flex d-sm-none justify-content-center nav-fade"></div>
+                  <div class="mobile-menu__social social nav-fade">
+                     <a href="https://www.facebook.com/" target="_blank" aria-label="share us on facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                     <a href="https://www.twitter.com/" target="_blank" aria-label="share us on twitter"><i class="fa-brands fa-twitter"></i></a>
+                     <a href="https://www.pinterest.com/" target="_blank" aria-label="share us on pinterest"><i class="fa-brands fa-linkedin-in"></i></a>
+                     <a href="https://www.instagram.com/" target="_blank" aria-label="share us on instagram"><i class="fa-brands fa-instagram"></i></a>
+                  </div>
+               </nav>
+            </div>
+            <div class="mobile-menu__backdrop"></div>
+            <!-- ==== / mobile menu end ==== -->
+         </div>
+      </header>
+      <!-- ==== / header end ==== -->
+
+      <div id="smooth-wrapper">
+         <div id="smooth-content">
+            <!-- ==== main start ==== -->
+            <main>
+
+               <!-- ====== NEW SWIGGY ZOMATO OPTIMIZATION CONTENT ====== -->
+               <section class="cmn-banner bg-img" style="background-image: url('assets/images/banner/cmn-banner-bg.png');">
+                  <div class="container">
+                     <div class="row gaper align-items-center">
+                        <div class="col-12 col-lg-6 col-xl-7">
+                           <div class="text-center text-lg-start">
+                              <h2 class="title title-anim">Swiggy & Zomato <br>Optimization</h2>
+                              <nav aria-label="breadcrumb">
+                                 <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Optimization</li>
+                                 </ol>
+                              </nav>
+                           </div>
+                        </div>
+                        <div class="col-12 col-lg-6 col-xl-5">
+                           <div class="d-flex flex-wrap justify-content-lg-end gap-2">
+                              <div class="badge-pulse"><i class="fas fa-sync-alt fa-spin"></i> AI routing · 32% faster</div>
+                              <div class="badge-pulse" style="background:rgba(34,197,94,0.06);border-color:#b8e6cd;"><i class="fas fa-leaf"></i> low carbon · 12% less</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+               <!-- PDF upload + animated preview -->
+               <section class="section pt-0">
+  
+</section>
+
+
+<script>
+  (function() {
+    const input = document.getElementById('pdfUploadSimple');
+    const fileNameSpan = document.getElementById('pdfFileNameSimple');
+    const progressFill = document.getElementById('progressFillSimple');
+    const progressPercent = document.getElementById('progressPercentSimple');
+    const statusIcon = document.getElementById('statusIconSimple');
+    const uploadTime = document.getElementById('uploadTimeSimple');
+
+    input.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) {
+        fileNameSpan.textContent = 'no file';
+        progressFill.style.width = '0%';
+        progressPercent.textContent = '0%';
+        statusIcon.style.color = '#ced4da';
+        uploadTime.innerHTML = '<i class="far fa-clock me-1"></i> not uploaded yet';
+        return;
+      }
+
+      // update file name
+      const displayName = file.name.length > 25 ? file.name.slice(0, 22) + '…' : file.name;
+      fileNameSpan.textContent = displayName;
+
+      // animate progress
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.floor(Math.random() * 12) + 3;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          // done
+          statusIcon.className = 'fas fa-check-circle';
+          statusIcon.style.color = '#22c55e';
+          uploadTime.innerHTML = '<i class="far fa-clock me-1"></i> uploaded just now';
+          // also update time after a moment
+          setTimeout(() => {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            uploadTime.innerHTML = '<i class="far fa-clock me-1"></i> uploaded at ' + timeStr;
+          }, 500);
+        }
+        progressFill.style.width = progress + '%';
+        progressPercent.textContent = progress + '%';
+      }, 100);
+    });
+  })();
+</script>
+
+<style>
+  /* simple clean overrides */
+  .bg-white.rounded-4 {
+    background: #0d0d0d !important;
+    border: 1px solid rgba(0,0,0,0.04) !important;
+  }
+  .badge.bg-light {
+    background: #f8f9fa !important;
+  }
+  .border {
+    border-color: #e9ecef !important;
+  }
+  .border-top {
+    border-color: #f1f3f5 !important;
+  }
+  .text-muted {
+    color: #6c757d !important;
+  }
+</style>
+
+    <!-- Profile Optimization Image Section -->
+<section class="profile-optimization">
+
+    <div class="optimization-title">
+        <span>OUR WORK</span>
+        <h2>Profile <strong>Optimization</strong></h2>
+        <p>
+            See how we optimize restaurant profiles to improve
+            visibility, presentation and customer engagement.
+        </p>
+    </div>
+
+    <div class="optimization-image">
+        <img src="assets/images/swiggy zo..png"
+             alt="Restaurant profile optimization"
+             loading="lazy">
+    </div>
+
+</section>
+
+               <!-- Optimization grid (animated cards) -->
+<!-- =========================
+     PROFILE OPTIMIZATION PROCESS
+========================= -->
+<section class="section optimization-process-section">
+   <div class="container">
+
+      <!-- Heading -->
+      <div class="row">
+         <div class="col-12 text-center fade-top">
+            <span class="secondary-text">OUR PROCESS</span>
+
+            <h2 class="section-title-custom">
+               From profile to <span class="text-orange">more orders</span>
+            </h2>
+
+            <p class="mx-auto optimization-intro">
+               Our step-by-step Swiggy & Zomato optimization process
+               is designed to improve your restaurant's presentation,
+               visibility and customer conversions.
+            </p>
+         </div>
+      </div>
+
+
+      <!-- Process Timeline -->
+      <div class="optimization-timeline">
+
+         <!-- Step 01 -->
+         <div class="optimization-step fade-top">
+            <div class="step-number">01</div>
+
+            <div class="step-content">
+               <span class="step-label">AUDIT</span>
+
+               <h4>Profile Audit</h4>
+
+               <p>
+                  We analyze your existing Swiggy & Zomato profiles,
+                  ratings, menu, images, descriptions and overall
+                  customer experience.
+               </p>
+
+               <div class="step-tags">
+                  <span>Profile Check</span>
+                  <span>Competitor Analysis</span>
+               </div>
+            </div>
+
+            <div class="step-icon">
+               <i class="fas fa-search"></i>
+            </div>
+         </div>
+
+
+         <!-- Step 02 -->
+         <div class="optimization-step fade-top">
+            <div class="step-number">02</div>
+
+            <div class="step-content">
+               <span class="step-label">MENU</span>
+
+               <h4>Menu Optimization</h4>
+
+               <p>
+                  We organize your menu into clear categories,
+                  improve item names and descriptions, highlight
+                  bestsellers and make the menu easier to explore.
+               </p>
+
+               <div class="step-tags">
+                  <span>Categories</span>
+                  <span>Bestsellers</span>
+               </div>
+            </div>
+
+            <div class="step-icon">
+               <i class="fas fa-utensils"></i>
+            </div>
+         </div>
+
+
+         <!-- Step 03 -->
+         <div class="optimization-step fade-top">
+            <div class="step-number">03</div>
+
+            <div class="step-content">
+               <span class="step-label">VISUALS</span>
+
+               <h4>Food Photos & Content</h4>
+
+               <p>
+                  We improve your food presentation with attractive
+                  images, optimized thumbnails and compelling
+                  descriptions that make customers want to order.
+               </p>
+
+               <div class="step-tags">
+                  <span>Food Images</span>
+                  <span>Descriptions</span>
+               </div>
+            </div>
+
+            <div class="step-icon">
+               <i class="fas fa-camera"></i>
+            </div>
+         </div>
+
+
+         <!-- Step 04 -->
+         <div class="optimization-step fade-top">
+            <div class="step-number">04</div>
+
+            <div class="step-content">
+               <span class="step-label">VISIBILITY</span>
+
+               <h4>Search & Profile Optimization</h4>
+
+               <p>
+                  We optimize your restaurant information, keywords,
+                  categories and profile content to improve discoverability
+                  across food delivery platforms.
+               </p>
+
+               <div class="step-tags">
+                  <span>Keywords</span>
+                  <span>Local Visibility</span>
+               </div>
+            </div>
+
+            <div class="step-icon">
+               <i class="fas fa-chart-line"></i>
+            </div>
+         </div>
+
+
+         <!-- Step 05 -->
+         <div class="optimization-step fade-top">
+            <div class="step-number">05</div>
+
+            <div class="step-content">
+               <span class="step-label">CONVERSION</span>
+
+               <h4>Offers & Promotions</h4>
+
+               <p>
+                  We help structure attractive offers, combos and
+                  promotional strategies designed to increase clicks,
+                  orders and repeat customers.
+               </p>
+
+               <div class="step-tags">
+                  <span>Offers</span>
+                  <span>Combos</span>
+               </div>
+            </div>
+
+            <div class="step-icon">
+               <i class="fas fa-percent"></i>
+            </div>
+         </div>
+
+
+         <!-- Step 06 -->
+         <div class="optimization-step fade-top">
+            <div class="step-number">06</div>
+
+            <div class="step-content">
+               <span class="step-label">GROWTH</span>
+
+               <h4>Monitor & Optimize</h4>
+
+               <p>
+                  We continuously monitor profile performance, customer
+                  response and important metrics to identify opportunities
+                  for further improvement.
+               </p>
+
+               <div class="step-tags">
+                  <span>Performance</span>
+                  <span>Continuous Growth</span>
+               </div>
+            </div>
+
+            <div class="step-icon">
+               <i class="fas fa-rocket"></i>
+            </div>
+         </div>
+
+      </div>
+
+
+      <!-- Bottom Result -->
+      <div class="optimization-result fade-top">
+
+         <div class="result-item">
+            <i class="fas fa-eye"></i>
+            <div>
+               <strong>Better Visibility</strong>
+               <span>Get discovered</span>
+            </div>
+         </div>
+
+         <div class="result-item">
+            <i class="fas fa-mouse-pointer"></i>
+            <div>
+               <strong>More Engagement</strong>
+               <span>Attract customers</span>
+            </div>
+         </div>
+
+         <div class="result-item">
+            <i class="fas fa-shopping-bag"></i>
+            <div>
+               <strong>More Orders</strong>
+               <span>Increase conversions</span>
+            </div>
+         </div>
+
+         <div class="result-item">
+            <i class="fas fa-chart-line"></i>
+            <div>
+               <strong>Business Growth</strong>
+               <span>Scale consistently</span>
+            </div>
+         </div>
+
+      </div>
+
+   </div>
+</section>
+               <!-- ====== END SWIGGY ZOMATO CONTENT ====== -->
+                
+
+            </main>
+            <!-- ==== / main end ==== -->
+
+            <!-- Footer Section (exactly as in file) -->
+            <!-- ==== footer start ==== -->
+<footer class="footer section pb-0" data-background="assets/images/footer/footer-bg.png">
+               <div class="container">
+                  <div class="row gaper">
+                     <div class="col-12 col-lg-5 col-xl-6">
+                        <div class="footer__single">
+                           <a href="index.html" class="footer-logo">
+                              <img src="assets/images/banner/brandx-removebg-preview.png" alt="Branditude">
+                           </a>
+                           <div class="footer__single-meta">
+                              <a href="https://maps.app.goo.gl/fCzk3XpfRieBic6k7" target="_blank">
+                                 <i class="fa-sharp fa-solid fa-location-dot"></i>
+                                 KHAMLA,NAGPUR 440025
+                              </a>
+                              <a href="tel:937007727">
+                                 <i class="fa-sharp fa-solid fa-phone-volume"></i>
+                                 9370077727
+                              </a>
+                              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=branditudeglobal@gmail.com"
+                                 target="_blank">
+                                 <i class="fa-sharp fa-solid fa-envelope"></i>
+                                 branditudeglobal@gmail.com
+                              </a>
+                           </div>
+                           <div class="footer__cta text-start">
+                              <a href="contact-us.html" class="btn btn--secondary">book a call now</a>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-12 col-lg-2 col-xl-2">
+                        <div class="footer__single">
+                           <div class="footer__single-intro">
+                              <h5>discover</h5>
+                           </div>
+                           <div class="footer__single-content">
+                              <ul>
+                                 <li>
+                                    <a href="about-us.html">About Us</a>
+                                 </li>
+
+                                 <li>
+                                    <a href="service-single.html">service</a>
+                                 </li>
+                                 <li>
+                                    <a href="contact-us.html">contact-us</a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-12 col-lg-5 col-xl-4">
+                        <div class="footer__single">
+                           <div class="footer__single-intro">
+                              <h5>Subscribe our newsletter</h5>
+                           </div>
+                           <div class="footer__single-content">
+                              <p>Branditude empowers businesses with creative branding, digital marketing, SEO, social
+                                 media management, and advertising solutions that inspire growth and success.</p>
+                              <form action="#" method="post">
+                                 <div class="input-email">
+                                    <input type="email" name="subscribe-news" id="subscribeNews"
+                                       placeholder="Enter Your Email" required>
+
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=branditudeglobal@gmail.com&su=Newsletter%20Subscription&body=Hi%20Branditude%20Global%2C%0A%0AI%20would%20like%20to%20subscribe%20to%20your%20newsletter."
+                                       class="subscribe" target="_blank" aria-label="Send email to Branditude Global">
+                                       <i class="fa-sharp fa-solid fa-paper-plane"></i>
+                                    </a>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-12">
+                     <div class="footer__copyright">
+                        <div class="row align-items-center gaper">
+                           <div class="col-12 col-lg-8">
+                              <div class="footer__copyright-text text-center text-lg-start">
+                                 <p>
+                                    Copyright &copy;
+                                    <span id="copyYear"></span>
+                                    Branditude
+                                    <a href="https://themeforest.net/user/pixel-plus/" target="_blank"></a>
+                                    . All Rights Reserved
+                                 </p>
+                              </div>
+                           </div>
+                           <div class="col-12 col-lg-4">
+                              <div class="social justify-content-center justify-content-lg-end">
+                                 <a href="https://www.facebook.com/" target="_blank">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                 </a>
+                                 <a href="https://www.twitter.com/" target="_blank">
+                                    <i class="fa-brands fa-twitter"></i>
+                                 </a>
+                                 <a href="https://www.pinterest.com/" target="_blank">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                 </a>
+                                 <a href="https://www.instagram.com/" target="_blank">
+                                    <i class="fa-brands fa-instagram"></i>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+         </div>
+         </footer>
+            <!-- ==== / footer end ==== -->
+         </div>
+      </div>
+   </div>
+
+   <!-- Back to top area start here -->
+   <!-- ==== scroll to top start ==== -->
+   <button class="progress-wrap" aria-label="scroll indicator" title="go to top">
+      <span></span>
+      <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+         <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+      </svg>
+   </button>
+   <!-- ==== / scroll to top end ==== -->
+
+   <!--<< All JS Plugins >>-->
+   <!-- ==== js dependencies start ==== -->
+   <script src="assets/vendor/jquery/jquery-3.7.0.min.js"></script>
+   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="assets/vendor/nice-select/js/jquery.nice-select.min.js"></script>
+   <script src="assets/vendor/magnific-popup/js/jquery.magnific-popup.min.js"></script>
+   <script src="assets/vendor/slick/js/slick.min.js"></script>
+   <script src="assets/vendor/images-loaded/imagesloaded.pkgd.min.js"></script>
+   <script src="assets/vendor/isotope/isotope.pkgd.min.js"></script>
+   <script src="assets/vendor/gsap/chroma.min.js"></script>
+   <script src="assets/vendor/gsap/SplitText.min.js"></script>
+   <script src="assets/vendor/gsap/ScrollSmoother.min.js"></script>
+   <script src="assets/vendor/gsap/ScrollToPlugin.min.js"></script>
+   <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+   <script src="assets/vendor/gsap/gsap.min.js"></script>
+   <script src="assets/vendor/vanilla-tilt/tilt.jquery.js"></script>
+   <!-- ==== / js dependencies end ==== -->
+   <!-- plugins js -->
+   <script src="assets/js/plugins.js"></script>
+   <!-- main js -->
+   <script src="assets/js/main.js"></script>
+
+   <!-- PDF upload handler -->
+   <script>
+      (function() {
+         const pdfInput = document.getElementById('pdfUploadOpt');
+         const pdfNameSpan = document.getElementById('pdfNameOpt');
+         const progressFill = document.getElementById('progressFillOpt');
+         const progressPercent = document.getElementById('progressPercentOpt');
+
+         if (pdfInput) {
+            pdfInput.addEventListener('change', function(e) {
+               const file = e.target.files[0];
+               if (!file) {
+                  pdfNameSpan.textContent = 'no file';
+                  return;
+               }
+               pdfNameSpan.textContent = file.name.length > 18 ? file.name.slice(0, 16) + '…' : file.name;
+               // simulate progress update
+               const newWidth = Math.floor(Math.random() * 30) + 60;
+               if (progressFill) {
+                  progressFill.style.width = newWidth + '%';
+               }
+               if (progressPercent) {
+                  progressPercent.textContent = newWidth + '%';
+               }
+            });
+         }
+         // set current year in footer
+         const yearSpan = document.getElementById('copyYear');
+         if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+      })();
+   </script>
+</body>
+
+<!-- Mirrored from ex-coders.com/php-template/xpovio/404.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Jul 2026 09:14:01 GMT -->
+</html>

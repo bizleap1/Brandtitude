@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- required meta -->
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- #favicon -->
+   <link rel="shortcut icon" href="assets/images/brandtitute.png" type="image/x-icon">
+   <!-- #title -->
+   <title>Branditude - Social Media Management</title>
+   <!-- #keywords -->
+   <meta name="keywords" content="social media management, digital marketing, branditude">
+   <!-- #description -->
+   <meta name="description" content="Professional Social Media Management services by Branditude. Grow your brand with strategic content, engagement, and performance tracking.">
+   <!-- ==== css dependencies start ==== -->
+   <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+   <link rel="stylesheet" href="assets/vendor/glyyphter/css/xpovio.css">
+   <link rel="stylesheet" href="assets/vendor/font-awesome/css/all.css">
+   <link rel="stylesheet" href="assets/vendor/nice-select/css/nice-select.css">
+   <link rel="stylesheet" href="assets/vendor/magnific-popup/css/magnific-popup.css">
+   <link rel="stylesheet" href="assets/vendor/slick/css/slick.css">
+   <!-- ==== / css dependencies end ==== -->
+   <!-- main css -->
+   <link rel="stylesheet" href="assets/css/main.min.css">
+   
+   <!-- Custom SMM Page Styles -->
+   <style>
+      /* ===== SMM PAGE DARK THEME ===== */
+      .smm-page {
+         background: #0a0a0f;
+         color: #eaeaf0;
+         padding-top: 0;
+      }
+      .smm-page .section {
+         padding: 80px 0;
+      }
+      .smm-page .section__header .title {
+         color: #ffffff;
+      }
+      .smm-page .section__header .sub-title {
+         color: #ff6a00;
+      }
+      .smm-page .light-title-lg {
+         color: #ffffff;
+      }
+      .smm-page p {
+         color: rgba(255,255,255,0.65);
+      }
+      
+      /* ===== HERO ===== */
+      .smm-hero {
+         min-height: 100vh;
+         display: flex;
+         align-items: center;
+         padding: 100px 0 80px;
+         position: relative;
+         overflow: hidden;
+         background: radial-gradient(ellipse at 20% 50%, rgba(108,60,225,0.12), transparent 60%),
+                     radial-gradient(ellipse at 80% 30%, rgba(255,107,107,0.06), transparent 50%),
+                     #0a0a0f;
+      }
+      .smm-hero .container {
+         position: relative;
+         z-index: 2;
+      }
+      .smm-hero-badge {
+         display: inline-block;
+         font-size: 0.75rem;
+         font-weight: 700;
+         letter-spacing: 2px;
+         text-transform: uppercase;
+         color: #ff6a00;
+         background: rgba(108,60,225,0.12);
+         padding: 6px 20px;
+         border-radius: 40px;
+         margin-bottom: 20px;
+      }
+      .smm-hero h1 {
+         font-size: clamp(2.6rem, 6vw, 4.2rem);
+         font-weight: 800;
+         line-height: 1.1;
+         color: #ffffff;
+         margin-bottom: 20px;
+      }
+      .smm-hero h1 span {
+         background: linear-gradient(135deg, #ff6a00, #ff6b6b);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+      }
+      .smm-hero .hero-text p {
+         font-size: 1.1rem;
+         max-width: 540px;
+         color: rgba(255,255,255,0.6);
+      }
+      .smm-hero .hero-actions {
+         display: flex;
+         gap: 16px;
+         margin-top: 30px;
+         flex-wrap: wrap;
+      }
+      .smm-hero .hero-actions .btn {
+         padding: 14px 36px;
+         border-radius: 60px;
+         font-weight: 600;
+         font-size: 1rem;
+      }
+      .smm-hero .hero-actions .btn--primary {
+         background: linear-gradient(135deg, #ff6a00, #8b5cf6);
+         color: #fff;
+         border: none;
+         box-shadow: 0 8px 28px rgba(108,60,225,0.25);
+      }
+      .smm-hero .hero-actions .btn--primary:hover {
+         transform: translateY(-3px);
+         box-shadow: 0 14px 40px rgba(108,60,225,0.35);
+      }
+      .smm-hero .hero-actions .btn--secondary {
+         background: transparent;
+         color: #fff;
+         border: 1px solid rgba(255,255,255,0.15);
+      }
+      .smm-hero .hero-actions .btn--secondary:hover {
+         background: rgba(255,255,255,0.06);
+         border-color: rgba(255,255,255,0.3);
+      }
+      
+      /* Floating Elements */
+      .smm-float-container {
+         position: relative;
+         height: 400px;
+      }
+      .smm-float-card {
+         position: absolute;
+         background: rgba(255,255,255,0.04);
+         backdrop-filter: blur(12px);
+         border: 1px solid rgba(255,255,255,0.06);
+         padding: 10px 18px;
+         border-radius: 40px;
+         font-size: 0.8rem;
+         display: flex;
+         align-items: center;
+         gap: 8px;
+         color: #eaeaf0;
+         box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+         animation: floatUp 8s ease-in-out infinite alternate;
+         white-space: nowrap;
+      }
+      .smm-float-card i { font-size: 1rem; color: #ff6a00; }
+      .smm-float-card-1 { top: 5%; left: 5%; animation-delay: 0s; }
+      .smm-float-card-2 { top: 20%; right: 5%; animation-delay: 1.2s; }
+      .smm-float-card-3 { bottom: 25%; left: 10%; animation-delay: 2.4s; }
+      .smm-float-card-4 { bottom: 10%; right: 15%; animation-delay: 0.6s; }
+      .smm-float-card-5 { top: 55%; left: 35%; animation-delay: 1.8s; }
+      .smm-float-card-6 { top: 10%; left: 45%; animation-delay: 3s; }
+      
+      .smm-float-icon {
+         position: absolute;
+         font-size: 2.8rem;
+         color: rgba(255,255,255,0.04);
+         animation: floatIcon 12s ease-in-out infinite alternate;
+      }
+      .smm-float-icon-1 { top: 8%; left: 20%; font-size: 3.5rem; animation-delay: 0s; }
+      .smm-float-icon-2 { bottom: 15%; right: 8%; font-size: 4rem; animation-delay: 2s; }
+      .smm-float-icon-3 { top: 40%; right: 20%; font-size: 3rem; animation-delay: 4s; }
+      .smm-float-icon-4 { bottom: 30%; left: 25%; font-size: 3.8rem; animation-delay: 1s; }
+      
+      @keyframes floatUp {
+         0% { transform: translateY(0px) rotate(0deg); }
+         100% { transform: translateY(-18px) rotate(1deg); }
+      }
+      @keyframes floatIcon {
+         0% { transform: translate(0,0) scale(1); opacity: 0.3; }
+         50% { transform: translate(10px,-20px) scale(1.1); opacity: 0.6; }
+         100% { transform: translate(-10px,10px) scale(0.9); opacity: 0.3; }
+      }
+      
+      /* ===== SMM SERVICES CARDS ===== */
+      .smm-services-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+         gap: 24px;
+      }
+      .smm-service-card {
+         background: rgba(255,255,255,0.03);
+         padding: 30px 24px;
+         border-radius: 20px;
+         border: 1px solid rgba(255,255,255,0.05);
+         transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+         text-align: center;
+         position: relative;
+         overflow: hidden;
+      }
+      .smm-service-card::before {
+         content: '';
+         position: absolute;
+         inset: 0;
+         background: linear-gradient(135deg, rgba(108,60,225,0.06), transparent);
+         opacity: 0;
+         transition: opacity 0.4s ease;
+      }
+      .smm-service-card:hover::before { opacity: 1; }
+      .smm-service-card:hover {
+         transform: translateY(-8px);
+         border-color: rgba(108,60,225,0.25);
+         box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+      }
+      .smm-service-card .icon {
+         font-size: 2.6rem;
+         color: #ff6a00;
+         margin-bottom: 14px;
+         display: block;
+         transition: transform 0.4s ease;
+      }
+      .smm-service-card:hover .icon {
+         transform: scale(1.1) rotate(-4deg);
+      }
+      .smm-service-card h4 {
+         color: #ffffff;
+         font-size: 1.1rem;
+         margin-bottom: 8px;
+      }
+      .smm-service-card p {
+         font-size: 0.9rem;
+         color: rgba(255,255,255,0.55);
+      }
+      
+      /* ===== TIMELINE ===== */
+      .smm-timeline {
+         display: flex;
+         flex-direction: column;
+         gap: 12px;
+         max-width: 720px;
+         margin: 0 auto;
+      }
+      .smm-timeline-item {
+         display: flex;
+         gap: 24px;
+         align-items: flex-start;
+         opacity: 0;
+         transform: translateX(-20px);
+         animation: slideReveal 0.7s forwards;
+      }
+      .smm-timeline-item:nth-child(1) { animation-delay: 0.1s; }
+      .smm-timeline-item:nth-child(2) { animation-delay: 0.25s; }
+      .smm-timeline-item:nth-child(3) { animation-delay: 0.4s; }
+      .smm-timeline-item:nth-child(4) { animation-delay: 0.55s; }
+      .smm-timeline-item:nth-child(5) { animation-delay: 0.7s; }
+      @keyframes slideReveal {
+         to { opacity: 1; transform: translateX(0); }
+      }
+      .smm-timeline-dot {
+         min-width: 48px;
+         height: 48px;
+         border-radius: 50%;
+         background: rgba(255,255,255,0.04);
+         border: 1px solid rgba(108,60,225,0.2);
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-weight: 700;
+         font-size: 0.85rem;
+         color: #ff6a00;
+      }
+      .smm-timeline-content {
+         background: rgba(255,255,255,0.03);
+         padding: 18px 24px;
+         border-radius: 16px;
+         flex: 1;
+         border: 1px solid rgba(255,255,255,0.04);
+      }
+      .smm-timeline-content h4 { color: #ffffff; margin-bottom: 4px; }
+      .smm-timeline-content p { font-size: 0.9rem; color: rgba(255,255,255,0.55); }
+      
+      /* ===== CONTENT TYPES ===== */
+      .smm-content-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+         gap: 16px;
+      }
+      .smm-content-card {
+         background: rgba(255,255,255,0.03);
+         padding: 24px 12px;
+         border-radius: 16px;
+         text-align: center;
+         border: 1px solid rgba(255,255,255,0.04);
+         transition: all 0.3s ease;
+         cursor: default;
+      }
+      .smm-content-card:hover {
+         transform: translateY(-6px);
+         border-color: rgba(108,60,225,0.15);
+         box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+      }
+      .smm-content-card i { font-size: 2rem; color: #ff6a00; display: block; margin-bottom: 8px; }
+      .smm-content-card span { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.8); }
+      
+      /* ===== MATTERS (Progress Bars) ===== */
+      .smm-matters-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+         gap: 24px;
+      }
+      .smm-matter-item {
+         background: rgba(255,255,255,0.03);
+         padding: 20px 22px;
+         border-radius: 16px;
+         border: 1px solid rgba(255,255,255,0.04);
+      }
+      .smm-matter-item .icon { font-size: 2rem; display: block; margin-bottom: 4px; }
+      .smm-matter-item h4 { font-size: 1rem; color: #ffffff; margin-bottom: 10px; }
+      .smm-matter-bar {
+         width: 100%;
+         height: 6px;
+         background: rgba(255,255,255,0.06);
+         border-radius: 10px;
+         overflow: hidden;
+      }
+      .smm-matter-fill {
+         height: 100%;
+         border-radius: 10px;
+         background: linear-gradient(90deg, #ff6a00, #8b5cf6);
+         width: 0%;
+         animation: fillBar 1.6s ease-out forwards;
+      }
+      @keyframes fillBar {
+         to { width: var(--fill, 80%); }
+      }
+      .smm-matter-item:nth-child(1) .smm-matter-fill { --fill: 88%; }
+      .smm-matter-item:nth-child(2) .smm-matter-fill { --fill: 82%; }
+      .smm-matter-item:nth-child(3) .smm-matter-fill { --fill: 90%; }
+      .smm-matter-item:nth-child(4) .smm-matter-fill { --fill: 76%; }
+      .smm-matter-item:nth-child(5) .smm-matter-fill { --fill: 80%; }
+      .smm-matter-item:nth-child(6) .smm-matter-fill { --fill: 85%; }
+      .smm-matter-item:nth-child(7) .smm-matter-fill { --fill: 87%; }
+      .smm-matter-item:nth-child(8) .smm-matter-fill { --fill: 92%; }
+      
+      /* ===== WHY CHOOSE ===== */
+      .smm-why-features {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 10px 30px;
+      }
+      .smm-why-feature {
+         display: flex;
+         align-items: center;
+         gap: 12px;
+         font-weight: 500;
+         padding: 8px 0;
+         color: rgba(255,255,255,0.8);
+         border-bottom: 1px solid rgba(255,255,255,0.03);
+      }
+      .smm-why-feature i { color: #ff6a00; font-size: 1.1rem; }
+      
+      /* ===== PLATFORMS ===== */
+      .smm-platform-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+         gap: 20px;
+      }
+      .smm-platform-card {
+         background: rgba(255,255,255,0.03);
+         padding: 30px 10px;
+         border-radius: 16px;
+         text-align: center;
+         border: 1px solid rgba(255,255,255,0.04);
+         transition: all 0.3s ease;
+      }
+      .smm-platform-card:hover {
+         transform: translateY(-6px);
+         border-color: #ff6a00;
+         box-shadow: 0 12px 32px rgba(108,60,225,0.08);
+      }
+      .smm-platform-card i { font-size: 2.8rem; color: #ff6a00; display: block; margin-bottom: 8px; }
+      .smm-platform-card span { font-weight: 600; color: rgba(255,255,255,0.8); }
+      
+      /* ===== BEFORE & AFTER ===== */
+      .smm-compare-grid {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 30px;
+         max-width: 900px;
+         margin: 0 auto;
+      }
+      .smm-compare-col {
+         background: rgba(255,255,255,0.03);
+         padding: 30px 28px;
+         border-radius: 16px;
+         border: 1px solid rgba(255,255,255,0.04);
+         transition: all 0.3s ease;
+      }
+      .smm-compare-col:hover { transform: translateY(-4px); }
+      .smm-compare-col h4 { font-size: 1.2rem; color: #ffffff; margin-bottom: 16px; }
+      .smm-compare-col ul { list-style: none; padding: 0; margin: 0; }
+      .smm-compare-col li {
+         display: flex;
+         align-items: center;
+         gap: 12px;
+         padding: 8px 0;
+         border-bottom: 1px solid rgba(255,255,255,0.03);
+         color: rgba(255,255,255,0.7);
+      }
+      .smm-compare-before li i { color: #ff6b6b; }
+      .smm-compare-after li i { color: #22c55e; }
+      
+      /* ===== CTA ===== */
+      .smm-cta {
+         background: radial-gradient(ellipse at 30% 40%, rgba(108,60,225,0.12), transparent 60%),
+                     radial-gradient(ellipse at 70% 60%, rgba(255,107,107,0.04), transparent 50%),
+                     #0a0a0f;
+         border-radius: 30px;
+         padding: 80px 40px;
+         text-align: center;
+         position: relative;
+         overflow: hidden;
+         border: 1px solid rgba(255,255,255,0.04);
+      }
+      .smm-cta h2 {
+         font-size: clamp(2rem, 4vw, 3rem);
+         color: #ffffff;
+         margin: 16px 0;
+      }
+      .smm-cta p { color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto 30px; }
+      .smm-cta .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+      .smm-cta .cta-actions .btn {
+         padding: 14px 36px;
+         border-radius: 60px;
+         font-weight: 600;
+      }
+      .smm-cta .cta-actions .btn--primary {
+         background: linear-gradient(135deg, #ff6a00, #8b5cf6);
+         color: #fff;
+         border: none;
+      }
+      .smm-cta .cta-actions .btn--secondary {
+         background: transparent;
+         color: #fff;
+         border: 1px solid rgba(255,255,255,0.15);
+      }
+      .smm-cta .cta-actions .btn--secondary:hover {
+         background: rgba(255,255,255,0.06);
+      }
+      .smm-cta .cta-floating {
+         margin-top: 40px;
+         display: flex;
+         justify-content: center;
+         gap: 32px;
+         font-size: 2rem;
+         color: rgba(255,255,255,0.05);
+      }
+      .smm-cta .cta-floating i {
+         animation: floatIcon 10s ease-in-out infinite alternate;
+      }
+      .smm-cta .cta-floating i:nth-child(2) { animation-delay: 1s; }
+      .smm-cta .cta-floating i:nth-child(3) { animation-delay: 2.5s; }
+      .smm-cta .cta-floating i:nth-child(4) { animation-delay: 4s; }
+      
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 992px) {
+         .smm-hero .row { flex-direction: column; }
+         .smm-float-container { height: 280px; margin-top: 30px; }
+         .smm-why-features { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 768px) {
+         .smm-page .section { padding: 50px 0; }
+         .smm-services-grid { grid-template-columns: 1fr 1fr; }
+         .smm-content-grid { grid-template-columns: 1fr 1fr; }
+         .smm-compare-grid { grid-template-columns: 1fr; }
+         .smm-cta { padding: 50px 20px; }
+         .smm-hero .hero-actions { flex-direction: column; align-items: stretch; }
+         .smm-hero .hero-actions .btn { text-align: center; }
+         .smm-float-card { font-size: 0.65rem; padding: 6px 12px; }
+         .smm-float-card-1, .smm-float-card-2, .smm-float-card-3, 
+         .smm-float-card-4, .smm-float-card-5, .smm-float-card-6 { display: none; }
+      }
+      @media (max-width: 480px) {
+         .smm-services-grid { grid-template-columns: 1fr; }
+         .smm-content-grid { grid-template-columns: 1fr 1fr; }
+         .smm-platform-grid { grid-template-columns: 1fr 1fr; }
+         .smm-matters-grid { grid-template-columns: 1fr; }
+      }
+      
+      /* ===== REDUCED MOTION ===== */
+      @media (prefers-reduced-motion: reduce) {
+         .smm-float-container *,
+         .smm-float-card,
+         .smm-float-icon,
+         .smm-timeline-item,
+         .smm-matter-fill,
+         .smm-cta .cta-floating i {
+            animation: none !important;
+            transition: none !important;
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <div class="my-app">
+      <!-- Preloader -->
+      <div id="preloader"><div id="loader"></div></div>
+      
+      <!-- Cursor -->
+      <div class="mouseCursor cursor-outer"></div>
+      <div class="mouseCursor cursor-inner"><span>Drag</span></div>
+      
+      <!-- ============================================================ -->
+      <!-- HEADER (YOUR EXISTING HEADER)                                 -->
+      <!-- ============================================================ -->
+      <header class="header">
+         <div class="primary-navbar cmn-nav">
+            <div class="container">
+               <div class="row">
+                  <div class="col-12">
+                     <nav class="navbar p-0">
+                        <div class="navbar__logo">
+                           <a href="index.html" aria-label="go to home">
+                              <img src="assets/images/banner/brandx-removebg-preview.png" alt="Branditude">
+                           </a>
+                        </div>
+                        <div class="navbar__menu">
+                           <ul>
+                              <li class="navbar__item navbar__item--has-children nav-fade">
+                                 <a href="index.html" aria-label="dropdown menu" class="navbar__dropdown-label">Home</a>
+                                 <ul class="navbar__sub-menu navbar__sub-menu--lg">
+                                    <li><a href="index.html">Creative Agency</a></li>
+                                    <li><a href="index-light.html">Creative Agency Light</a></li>
+                                    <li><a href="index-two.html">Digital Agency</a></li>
+                                    <li><a href="index-two-light.html">Digital Agency Light</a></li>
+                                    <li><a href="index-three.html">It Solution</a></li>
+                                    <li><a href="index-three-light.html">It Solution Light</a></li>
+                                    <li><a href="index-four.html">Personal Portfolio</a></li>
+                                    <li><a href="index-four-light.html">Personal Portfolio Light</a></li>
+                                    <li><a href="index-five.html">Interactive Portfolio</a></li>
+                                    <li><a href="index-five-light.html">Interactive Portfolio Light</a></li>
+                                 </ul>
+                              </li>
+                              <li class="navbar__item navbar__item--has-children nav-fade">
+                                 <a href="about-us.html" aria-label="dropdown menu" class="navbar__dropdown-label">About Us</a>
+                                 <ul class="navbar__sub-menu">
+                                    <li><a href="our-services.html">Our Services</a></li>
+                                    <li><a href="service-single.html">Service Details</a></li>
+                                 </ul>
+                              </li>
+                              <li class="navbar__item navbar__item--has-children nav-fade">
+                                 <a href="our-services.html" aria-label="dropdown menu" class="navbar__dropdown-label">Services</a>
+                                 <ul class="navbar__sub-menu">
+                                    <li><a href="our-services.html">Our Services</a></li>
+                                    <li><a href="service-single.html">Service Details</a></li>
+                                 </ul>
+                              </li>
+                              <li class="navbar__item navbar__item--has-children nav-fade">
+                                 <a href="index-four.html" aria-label="dropdown menu" class="navbar__dropdown-label">Projects</a>
+                                 <ul class="navbar__sub-menu">
+                                    <li><a href="index-four.html">Our Projects</a></li>
+                                    <li><a href="project-single.html">Project Details</a></li>
+                                 </ul>
+                              </li>
+                              <li class="navbar__item navbar__item--has-children nav-fade">
+                                 <a href="our-teams.html" aria-label="dropdown menu" class="navbar__dropdown-label navbar__dropdown-label-sub">Team</a>
+                              </li>
+                           </ul>
+                        </div>
+                        <div class="navbar__options">
+                           <div class="navbar__mobile-options d-none d-sm-flex">
+                              <a href="https://wa.me/919370077727?text=Hi%20Branditude%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services"
+                                 class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Let's Talk</a>
+                           </div>
+                           <button class="open-mobile-menu d-flex d-xl-none" aria-label="toggle mobile menu">
+                              <i class="fa-light fa-bars-staggered"></i>
+                           </button>
+                        </div>
+                     </nav>
+                  </div>
+               </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="mobile-menu">
+               <nav class="mobile-menu__wrapper">
+                  <div class="mobile-menu__header nav-fade">
+                     <div class="logo">
+                        <a href="index.html"><img src="assets/images/logo.png" alt=""></a>
+                     </div>
+                     <a href="javascript:void(0)" aria-label="close mobile menu" class="close-mobile-menu">
+                        <i class="fa-light fa-xmark-large"></i>
+                     </a>
+                  </div>
+                  <div class="mobile-menu__list"></div>
+                  <div class="mobile-menu__options d-flex d-sm-none justify-content-center nav-fade"></div>
+                  <div class="mobile-menu__social social nav-fade">
+                     <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                     
+                     <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                  </div>
+               </nav>
+            </div>
+            <div class="mobile-menu__backdrop"></div>
+         </div>
+      </header>
+      <!-- ============================================================ -->
+      <!-- / HEADER END                                                 -->
+      <!-- ============================================================ -->
+
+      <div id="smooth-wrapper">
+         <div id="smooth-content">
+
+            <!-- ============================================================ -->
+            <!-- MAIN CONTENT - SOCIAL MEDIA MANAGEMENT PAGE                  -->
+            <!-- ============================================================ -->
+            <main class="smm-page">
+
+               <!-- ===== SECTION 1: HERO ===== -->
+               <section class="smm-hero">
+                  <div class="container">
+                     <div class="row align-items-center">
+                        <div class="col-lg-6">
+                           <div class="hero-text">
+                              <span class="smm-hero-badge">✦ SOCIAL MEDIA MANAGEMENT</span>
+                              <h1>Turn Your <span>Social Media</span> Into a Powerful Brand Experience.</h1>
+                              <p>At Branditude, we don't just manage social media accounts. We build strategies, create meaningful content, grow communities, and transform your digital presence into a powerful tool for business growth.</p>
+                              <div class="hero-actions">
+                                 <a href="#" class="btn btn--primary">Grow Your Brand</a>
+                                 <a href="#" class="btn btn--secondary">Let's Talk</a>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="smm-float-container">
+                              <div class="smm-float-card smm-float-card-1"><i class="fab fa-instagram"></i> <span>+1.2k likes</span></div>
+                              <div class="smm-float-card smm-float-card-2"><i class="fab fa-facebook"></i> <span>45 comments</span></div>
+                              <div class="smm-float-card smm-float-card-3"><i class="fab fa-linkedin"></i> <span>+230 followers</span></div>
+                              <div class="smm-float-card smm-float-card-4"><i class="fas fa-bell"></i> <span>New notification</span></div>
+                              <div class="smm-float-card smm-float-card-5"><i class="fas fa-heart" style="color:#ff6b6b;"></i> <span>3.4k engagement</span></div>
+                              <div class="smm-float-card smm-float-card-6"><i class="fab fa-youtube"></i> <span>Reel views 12.5k</span></div>
+                              <div class="smm-float-icon smm-float-icon-1"><i class="fab fa-instagram"></i></div>
+                              <div class="smm-float-icon smm-float-icon-2"><i class="fab fa-facebook"></i></div>
+                              <div class="smm-float-icon smm-float-icon-3"><i class="fab fa-linkedin"></i></div>
+                              <div class="smm-float-icon smm-float-icon-4"><i class="fab fa-youtube"></i></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+               <!-- ===== SECTION 2: ABOUT SMM ===== -->
+               <section class="section">
+                  <div class="container">
+                     <div class="row align-items-center gaper">
+                        <div class="col-lg-6">
+                           <div class="section__header text-start">
+                              <span class="sub-title">
+                                 ABOUT
+                                 <i class="fa-solid fa-arrow-right"></i>
+                              </span>
+                              <h2 class="title title-anim">Your Social Media. Our Strategy. Better Results.</h2>
+                           </div>
+                           <p style="margin-top:20px;">Your audience is already scrolling. The real question is — are they stopping for your brand?</p>
+                           <p>At Branditude, we create and manage social media experiences that help businesses stand out, connect with their audience and build a strong digital identity. From strategy and creative content to daily management and performance tracking, we take care of everything your social media needs.</p>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="smm-float-container" style="height:250px;">
+                              <div class="platform-network" style="position:relative;height:100%;display:flex;align-items:center;justify-content:center;">
+                                 <div style="position:absolute;width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);top:5%;left:5%;transition:all 0.3s;"><i class="fab fa-instagram" style="color:#8b5cf6;"></i></div>
+                                 <div style="position:absolute;width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);top:5%;right:5%;transition:all 0.3s;"><i class="fab fa-facebook" style="color:#8b5cf6;"></i></div>
+                                 <div style="position:absolute;width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);bottom:5%;left:10%;transition:all 0.3s;"><i class="fab fa-linkedin" style="color:#8b5cf6;"></i></div>
+                                 <div style="position:absolute;width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);bottom:5%;right:10%;transition:all 0.3s;"><i class="fab fa-youtube" style="color:#8b5cf6;"></i></div>
+                                 <div style="width:120px;height:120px;border-radius:50%;border:1px solid rgba(108,60,225,0.08);animation:pulseRing 4s ease-in-out infinite;"></div>
+                                 <style>
+                                    @keyframes pulseRing {
+                                       0% { transform: scale(0.8); opacity: 0.4; }
+                                       50% { transform: scale(1.2); opacity: 0; }
+                                       100% { transform: scale(0.8); opacity: 0.4; }
+                                    }
+                                 </style>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+               <!-- ===== SECTION 3: WHAT WE MANAGE ===== -->
+               <section class="section bg-tertiary">
+                  <div class="container">
+                     <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                           <div class="section__header text-center">
+                              <span class="sub-title">
+                                 SERVICES
+                                 <i class="fa-solid fa-arrow-right"></i>
+                              </span>
+                              <h2 class="title title-anim">Everything Your Social Media Needs</h2>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12">
+                           <div class="smm-services-grid">
+                              <div class="smm-service-card">
+                                 <span class="icon"><i class="fas fa-bullseye"></i></span>
+                                 <h4>Social Media Strategy</h4>
+                                 <p>Customized content &amp; growth strategy based on your business goals and target audience.</p>
+                              </div>
+                              <div class="smm-service-card">
+                                 <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+                                 <h4>Content Planning</h4>
+                                 <p>Monthly content calendars with engaging posts, stories and reels.</p>
+                              </div>
+                              <div class="smm-service-card">
+                                 <span class="icon"><i class="fas fa-paint-brush"></i></span>
+                                 <h4>Creative Design</h4>
+                                 <p>Professional graphics, carousels, promotional posts and branded visuals.</p>
+                              </div>
+                              <div class="smm-service-card">
+                                 <span class="icon"><i class="fas fa-video"></i></span>
+                                 <h4>Reels &amp; Video Content</h4>
+                                 <p>Engaging short-form videos and reels designed to capture attention.</p>
+                              </div>
+                              <div class="smm-service-card">
+                                 <span class="icon"><i class="fas fa-pen-fancy"></i></span>
+                                 <h4>Content Writing</h4>
+                                 <p>Powerful captions, content ideas and platform-specific messaging.</p>
+                              </div>
+                              <div class="smm-service-card">
+                                 <span class="icon"><i class="fas fa-hashtag"></i></span>
+                                 <h4>Hashtag &amp; Trend Research</h4>
+                                 <p>Identify relevant hashtags, trending topics and content opportunities.</p>
+                              </div>
+                              <div class="smm-service-card">
+                                 <span class="icon"><i class="fas fa-clock"></i></span>
+                                 <h4>Social Media Posting</h4>
+                                 <p>Schedule and publish content consistently across all platforms.</p>
+                              </div>
+                              <div class="smm-service-card">
+                                 <span class="icon"><i class="fas fa-users"></i></span>
+                                 <h4>Community Management</h4>
+                                 <p>Manage comments, messages and audience engagement daily.</p>
+                              </div>
+                              <div class="smm-service-card">
+                                 <span class="icon"><i class="fas fa-palette"></i></span>
+                                 <h4>Brand Consistency</h4>
+                                 <p>Maintain consistent colors, tone, visuals and messaging across all platforms.</p>
+                              </div>
+                              <div class="smm-service-card">
+                                 <span class="icon"><i class="fas fa-chart-line"></i></span>
+                                 <h4>Performance Analysis</h4>
+                                 <p>Track engagement, reach, followers and content performance to improve strategies.</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+               <!-- ===== SECTION 4: PROCESS ===== -->
+               <section class="section">
+                  <div class="container">
+                     <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                           <div class="section__header text-center">
+                              <span class="sub-title">
+                                 PROCESS
+                                 <i class="fa-solid fa-arrow-right"></i>
+                              </span>
+                              <h2 class="title title-anim">How We Build Your Social Presence</h2>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12">
+                           <div class="smm-timeline">
+                              <div class="smm-timeline-item">
+                                 <div class="smm-timeline-dot">01</div>
+                                 <div class="smm-timeline-content">
+                                    <h4>Understand Your Brand</h4>
+                                    <p>We learn about your business, audience, competitors and goals.</p>
+                                 </div>
+                              </div>
+                              <div class="smm-timeline-item">
+                                 <div class="smm-timeline-dot">02</div>
+                                 <div class="smm-timeline-content">
+                                    <h4>Build the Strategy</h4>
+                                    <p>We create a customized social media strategy designed for your business.</p>
+                                 </div>
+                              </div>
+                              <div class="smm-timeline-item">
+                                 <div class="smm-timeline-dot">03</div>
+                                 <div class="smm-timeline-content">
+                                    <h4>Create Powerful Content</h4>
+                                    <p>Our creative team designs engaging posts, reels, stories and campaigns.</p>
+                                 </div>
+                              </div>
+                              <div class="smm-timeline-item">
+                                 <div class="smm-timeline-dot">04</div>
+                                 <div class="smm-timeline-content">
+                                    <h4>Manage &amp; Engage</h4>
+                                    <p>We consistently manage your accounts and build meaningful audience engagement.</p>
+                                 </div>
+                              </div>
+                              <div class="smm-timeline-item">
+                                 <div class="smm-timeline-dot">05</div>
+                                 <div class="smm-timeline-content">
+                                    <h4>Analyze &amp; Optimize</h4>
+                                    <p>We track performance and continuously improve the strategy.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+               <!-- ===== SECTION 5: CONTENT TYPES ===== -->
+               <section class="section bg-tertiary">
+                  <div class="container">
+                     <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                           <div class="section__header text-center">
+                              <span class="sub-title">
+                                 CONTENT
+                                 <i class="fa-solid fa-arrow-right"></i>
+                              </span>
+                              <h2 class="title title-anim">Content That Makes People Stop Scrolling</h2>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12">
+                           <div class="smm-content-grid">
+                              <div class="smm-content-card"><i class="fas fa-image"></i><span>Static Posts</span></div>
+                              <div class="smm-content-card"><i class="fas fa-images"></i><span>Carousel Posts</span></div>
+                              <div class="smm-content-card"><i class="fas fa-film"></i><span>Instagram Reels</span></div>
+                              <div class="smm-content-card"><i class="fas fa-circle"></i><span>Stories</span></div>
+                              <div class="smm-content-card"><i class="fas fa-bullhorn"></i><span>Promotional Creatives</span></div>
+                              <div class="smm-content-card"><i class="fas fa-box"></i><span>Product Posts</span></div>
+                              <div class="smm-content-card"><i class="fas fa-globe"></i><span>Brand Awareness</span></div>
+                              <div class="smm-content-card"><i class="fas fa-graduation-cap"></i><span>Educational Content</span></div>
+                              <div class="smm-content-card"><i class="fas fa-fire"></i><span>Trending Content</span></div>
+                              <div class="smm-content-card"><i class="fas fa-calendar-day"></i><span>Festival &amp; Seasonal</span></div>
+                              <div class="smm-content-card"><i class="fas fa-play-circle"></i><span>Motion Graphics</span></div>
+                              <div class="smm-content-card"><i class="fas fa-video"></i><span>Short-Form Videos</span></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+               <!-- ===== SECTION 6: WHY SOCIAL MEDIA MATTERS ===== -->
+               <section class="section">
+                  <div class="container">
+                     <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                           <div class="section__header text-center">
+                              <span class="sub-title">
+                                 IMPACT
+                                 <i class="fa-solid fa-arrow-right"></i>
+                              </span>
+                              <h2 class="title title-anim">Your Customers Are Online. Your Brand Should Stand Out.</h2>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12">
+                           <div class="smm-matters-grid">
+                              <div class="smm-matter-item">
+                                 <span class="icon">📈</span>
+                                 <h4>Stronger Brand Awareness</h4>
+                                 <div class="smm-matter-bar"><div class="smm-matter-fill"></div></div>
+                              </div>
+                              <div class="smm-matter-item">
+                                 <span class="icon">💬</span>
+                                 <h4>Better Customer Engagement</h4>
+                                 <div class="smm-matter-bar"><div class="smm-matter-fill"></div></div>
+                              </div>
+                              <div class="smm-matter-item">
+                                 <span class="icon">📅</span>
+                                 <h4>Consistent Online Presence</h4>
+                                 <div class="smm-matter-bar"><div class="smm-matter-fill"></div></div>
+                              </div>
+                              <div class="smm-matter-item">
+                                 <span class="icon">🌐</span>
+                                 <h4>Increased Website Traffic</h4>
+                                 <div class="smm-matter-bar"><div class="smm-matter-fill"></div></div>
+                              </div>
+                              <div class="smm-matter-item">
+                                 <span class="icon">🎯</span>
+                                 <h4>More Leads</h4>
+                                 <div class="smm-matter-bar"><div class="smm-matter-fill"></div></div>
+                              </div>
+                              <div class="smm-matter-item">
+                                 <span class="icon">🤝</span>
+                                 <h4>Better Customer Trust</h4>
+                                 <div class="smm-matter-bar"><div class="smm-matter-fill"></div></div>
+                              </div>
+                              <div class="smm-matter-item">
+                                 <span class="icon">⭐</span>
+                                 <h4>Higher Brand Recognition</h4>
+                                 <div class="smm-matter-bar"><div class="smm-matter-fill"></div></div>
+                              </div>
+                              <div class="smm-matter-item">
+                                 <span class="icon">🚀</span>
+                                 <h4>Long-Term Business Growth</h4>
+                                 <div class="smm-matter-bar"><div class="smm-matter-fill"></div></div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+               <!-- ===== SECTION 7: WHY CHOOSE BRANDITUDE ===== -->
+               <section class="section bg-tertiary">
+                  <div class="container">
+                     <div class="row align-items-center gaper">
+                        <div class="col-lg-6">
+                           <div class="section__header text-start">
+                              <span class="sub-title">
+                                 WHY BRANDITUDE
+                                 <i class="fa-solid fa-arrow-right"></i>
+                              </span>
+                              <h2 class="title title-anim">More Than Social Media Management</h2>
+                           </div>
+                           <p style="margin-top:20px;">We combine creativity, strategy and data to build social media experiences that actually support business growth.</p>
+                           <p>Every post has a purpose. Every creative has a strategy. Every campaign is built around your brand.</p>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="smm-why-features">
+                              <div class="smm-why-feature"><i class="fas fa-check-circle"></i> Customized Strategy</div>
+                              <div class="smm-why-feature"><i class="fas fa-check-circle"></i> Creative Content</div>
+                              <div class="smm-why-feature"><i class="fas fa-check-circle"></i> Consistent Branding</div>
+                              <div class="smm-why-feature"><i class="fas fa-check-circle"></i> Professional Design</div>
+                              <div class="smm-why-feature"><i class="fas fa-check-circle"></i> Trend-Focused Approach</div>
+                              <div class="smm-why-feature"><i class="fas fa-check-circle"></i> Performance Tracking</div>
+                              <div class="smm-why-feature"><i class="fas fa-check-circle"></i> Dedicated Management</div>
+                              <div class="smm-why-feature"><i class="fas fa-check-circle"></i> Growth-Focused Strategy</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+               <!-- ===== SECTION 8: PLATFORMS ===== -->
+               <section class="section">
+                  <div class="container">
+                     <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                           <div class="section__header text-center">
+                              <span class="sub-title">
+                                 PLATFORMS
+                                 <i class="fa-solid fa-arrow-right"></i>
+                              </span>
+                              <h2 class="title title-anim">We Manage The Platforms That Matter</h2>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12">
+                           <div class="smm-platform-grid">
+                              <div class="smm-platform-card"><i class="fab fa-instagram"></i><span>Instagram</span></div>
+                              <div class="smm-platform-card"><i class="fab fa-facebook"></i><span>Facebook</span></div>
+                              <div class="smm-platform-card"><i class="fab fa-linkedin"></i><span>LinkedIn</span></div>
+                              <div class="smm-platform-card"><i class="fab fa-youtube"></i><span>YouTube</span></div>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+               <!-- ===== SECTION 9: BEFORE & AFTER ===== -->
+               <section class="section bg-tertiary">
+                  <div class="container">
+                     <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                           <div class="section__header text-center">
+                              <span class="sub-title">
+                                 TRANSFORMATION
+                                 <i class="fa-solid fa-arrow-right"></i>
+                              </span>
+                              <h2 class="title title-anim">From Random Posting to Strategic Growth</h2>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12">
+                           <div class="smm-compare-grid">
+                              <div class="smm-compare-col smm-compare-before">
+                                 <h4>❌ Without Branditude</h4>
+                                 <ul>
+                                    <li><i class="fas fa-times"></i> Inconsistent Posting</li>
+                                    <li><i class="fas fa-times"></i> Weak Brand Identity</li>
+                                    <li><i class="fas fa-times"></i> Random Content</li>
+                                    <li><i class="fas fa-times"></i> Low Engagement</li>
+                                    <li><i class="fas fa-times"></i> No Content Strategy</li>
+                                    <li><i class="fas fa-times"></i> No Performance Tracking</li>
+                                 </ul>
+                              </div>
+                              <div class="smm-compare-col smm-compare-after">
+                                 <h4>✅ With Branditude</h4>
+                                 <ul>
+                                    <li><i class="fas fa-check"></i> Consistent Content</li>
+                                    <li><i class="fas fa-check"></i> Strong Brand Identity</li>
+                                    <li><i class="fas fa-check"></i> Strategic Planning</li>
+                                    <li><i class="fas fa-check"></i> Better Engagement</li>
+                                    <li><i class="fas fa-check"></i> Creative Campaigns</li>
+                                    <li><i class="fas fa-check"></i> Performance Optimization</li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+               <!-- ===== SECTION 10: CTA ===== -->
+               <section class="section">
+                  <div class="container">
+                     <div class="smm-cta">
+                        <span class="sub-title" style="color:rgba(255,255,255,0.4);">
+                           LET'S GROW
+                           <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                        <h2>Ready To Build A Social Media Presence That Gets Noticed?</h2>
+                        <p>Let Branditude manage your social media while you focus on growing your business.</p>
+                        <div class="cta-actions">
+                           <a href="contact-us.html" class="btn btn--primary">Start Your Growth Journey</a>
+                           <a href="about-us.html" class="btn btn--secondary">Talk To Our Team</a>
+                        </div>
+                        <div class="cta-floating">
+                           <i class="fab fa-instagram"></i>
+                           <i class="fab fa-facebook"></i>
+                           <i class="fab fa-linkedin"></i>
+                           <i class="fab fa-youtube"></i>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+
+            </main>
+            <!-- ============================================================ -->
+            <!-- / MAIN CONTENT END                                           -->
+            <!-- ============================================================ -->
+
+            <!-- ============================================================ -->
+            <!-- FOOTER (YOUR EXISTING FOOTER)                                 -->
+            <!-- ============================================================ -->
+            <footer class="footer section pb-0" data-background="assets/images/footer/footer-bg.png">
+               <div class="container">
+                  <div class="row gaper">
+                     <div class="col-12 col-lg-5 col-xl-6">
+                        <div class="footer__single">
+                           <a href="index.html" class="footer-logo">
+                              <img src="assets/images/banner/brandx-removebg-preview.png" alt="Branditude">
+                           </a>
+                           <div class="footer__single-meta">
+                              <a href="https://maps.app.goo.gl/fCzk3XpfRieBic6k7" target="_blank">
+                                 <i class="fa-sharp fa-solid fa-location-dot"></i>
+                                 KHAMLA,NAGPUR 440025
+                              </a>
+                              <a href="tel:937007727">
+                                 <i class="fa-sharp fa-solid fa-phone-volume"></i>
+                                 9370077727
+                              </a>
+                              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=branditudeglobal@gmail.com" target="_blank">
+                                 <i class="fa-sharp fa-solid fa-envelope"></i>
+                                 branditudeglobal@gmail.com
+                              </a>
+                           </div>
+                           <div class="footer__cta text-start">
+                              <a href="contact-us.html" class="btn btn--secondary">book a call now</a>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-12 col-lg-2 col-xl-2">
+                        <div class="footer__single">
+                           <div class="footer__single-intro">
+                              <h5>discover</h5>
+                           </div>
+                           <div class="footer__single-content">
+                              <ul>
+                                 <li><a href="about-us.html">About Us</a></li>
+                                 <li><a href="service-single.html">service</a></li>
+                                 <li><a href="contact-us.html">contact-us</a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-12 col-lg-5 col-xl-4">
+                        <div class="footer__single">
+                           <div class="footer__single-intro">
+                              <h5>Subscribe our newsletter</h5>
+                           </div>
+                           <div class="footer__single-content">
+                              <p>Branditude empowers businesses with creative branding, digital marketing, SEO, social media management, and advertising solutions that inspire growth and success.</p>
+                              <form action="#" method="post">
+                                 <div class="input-email">
+                                    <input type="email" name="subscribe-news" id="subscribeNews"
+                                       placeholder="Enter Your Email" required>
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=branditudeglobal@gmail.com&su=Newsletter%20Subscription&body=Hi%20Branditude%20Global%2C%0A%0AI%20would%20like%20to%20subscribe%20to%20your%20newsletter."
+                                       class="subscribe" target="_blank"
+                                       aria-label="Send email to Branditude Global">
+                                       <i class="fa-sharp fa-solid fa-paper-plane"></i>
+                                    </a>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-12">
+                     <div class="footer__copyright">
+                        <div class="row align-items-center gaper">
+                           <div class="col-12 col-lg-8">
+                              <div class="footer__copyright-text text-center text-lg-start">
+                                 <p>
+                                    Copyright &copy;
+                                    <span id="copyYear"></span>
+                                    Branditude
+                                    <a href="https://themeforest.net/user/pixel-plus/" target="_blank"></a>
+                                    . All Rights Reserved
+                                 </p>
+                              </div>
+                           </div>
+                           <div class="col-12 col-lg-4">
+                              <div class="social justify-content-center justify-content-lg-end">
+                                 <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                                 <a href="https://www.twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                                 <a href="https://www.pinterest.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                                 <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </footer>
+            <!-- ============================================================ -->
+            <!-- / FOOTER END                                                 -->
+            <!-- ============================================================ -->
+
+         </div>
+      </div>
+
+      <!-- Back to top -->
+      <button class="progress-wrap" aria-label="scroll indicator" title="go to top">
+         <span></span>
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+      </button>
+   </div>
+
+   <!-- ===== JS DEPENDENCIES ===== -->
+   <script src="assets/vendor/jquery/jquery-3.7.0.min.js"></script>
+   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="assets/vendor/nice-select/js/jquery.nice-select.min.js"></script>
+   <script src="assets/vendor/magnific-popup/js/jquery.magnific-popup.min.js"></script>
+   <script src="assets/vendor/slick/js/slick.min.js"></script>
+   <script src="assets/vendor/images-loaded/imagesloaded.pkgd.min.js"></script>
+   <script src="assets/vendor/isotope/isotope.pkgd.min.js"></script>
+   <script src="assets/vendor/gsap/chroma.min.js"></script>
+   <script src="assets/vendor/gsap/SplitText.min.js"></script>
+   <script src="assets/vendor/gsap/ScrollSmoother.min.js"></script>
+   <script src="assets/vendor/gsap/ScrollToPlugin.min.js"></script>
+   <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+   <script src="assets/vendor/gsap/gsap.min.js"></script>
+   <script src="assets/vendor/vanilla-tilt/tilt.jquery.js"></script>
+   <script src="assets/js/plugins.js"></script>
+   <script src="assets/js/main.js"></script>
+   
+   <!-- Custom JS for SMM Page -->
+   <script>
+   document.addEventListener('DOMContentLoaded', function() {
+      // Set copyright year
+      document.getElementById('copyYear').textContent = new Date().getFullYear();
+      
+      // Observe progress bars for animation
+      const observer = new IntersectionObserver((entries) => {
+         entries.forEach(entry => {
+            if (entry.isIntersecting) {
+               entry.target.style.animation = 'fillBar 1.6s ease-out forwards';
+            }
+         });
+      }, { threshold: 0.3 });
+      
+      document.querySelectorAll('.smm-matter-fill').forEach(el => {
+         observer.observe(el);
+      });
+   });
+   </script>
+
+</body>
+</html>

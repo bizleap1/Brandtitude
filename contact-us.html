@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Branditude · Contact</title>
+  <!-- Font Awesome (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #0b0b0b;
+      color: #f0f0f0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ===== HEADER (exact from provided) ===== */
+    .header {
+      background: #0d0d0d;
+      border-bottom: 1px solid #1f1f1f;
+      padding: 0.6rem 0;
+    }
+    .primary-navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .navbar__logo a {
+      display: block;
+    }
+    .navbar__logo img {
+      height: 50px;
+      width: auto;
+      filter: brightness(1.1);
+    }
+    .navbar__menu {
+      display: flex;
+      align-items: center;
+    }
+    .navbar__menu > ul {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .navbar__item {
+      position: relative;
+    }
+    .navbar__dropdown-label {
+      color: #ccc;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.6rem 1rem;
+      display: block;
+      transition: color 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .navbar__dropdown-label:hover {
+      color: #f47b20;
+    }
+    .navbar__sub-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #151515;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 0.6rem 0;
+      min-width: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: all 0.25s ease;
+      z-index: 100;
+    }
+    .navbar__item:hover .navbar__sub-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .navbar__sub-menu li a {
+      color: #ccc;
+      padding: 0.5rem 1.2rem;
+      display: block;
+      font-size: 0.85rem;
+      transition: 0.15s;
+    }
+    .navbar__sub-menu li a:hover {
+      color: #f47b20;
+      background: #1f1f1f;
+    }
+    .navbar__options {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .navbar__mobile-options .btn--secondary {
+      background: transparent;
+      border: 1px solid #f47b20;
+      color: #f47b20;
+      padding: 0.5rem 1.4rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+    .navbar__mobile-options .btn--secondary:hover {
+      background: #f47b20;
+      color: #0b0b0b;
+    }
+    .open-mobile-menu {
+      background: transparent;
+      border: none;
+      color: #ccc;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: none;
+    }
+    /* Mobile menu (hidden by default) */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 320px;
+      height: 100%;
+      background: #111;
+      border-left: 1px solid #2a2a2a;
+      transition: right 0.35s ease;
+      z-index: 999;
+      padding: 2rem 1.5rem;
+      overflow-y: auto;
+    }
+    .mobile-menu.open {
+      right: 0;
+    }
+    .mobile-menu__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .mobile-menu__header .logo img { height: 40px; }
+    .close-mobile-menu {
+      color: #ccc;
+      font-size: 1.6rem;
+    }
+    .mobile-menu__list ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .mobile-menu__list ul li a {
+      color: #ddd;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      display: block;
+      border-bottom: 1px solid #222;
+    }
+    .mobile-menu__social {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .mobile-menu__social a {
+      color: #aaa;
+      font-size: 1.2rem;
+      transition: 0.2s;
+    }
+    .mobile-menu__social a:hover { color: #f47b20; }
+    .mobile-menu__backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+    .mobile-menu__backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ===== FOOTER (exact from provided) ===== */
+    .footer {
+      background: #0c0c0c;
+      border-top: 1px solid #1e1e1e;
+      padding: 3rem 1.5rem 1.5rem;
+    }
+    .footer .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .footer .row.gaper {
+      gap: 2.5rem;
+    }
+    .footer__single {
+      flex: 1 1 200px;
+    }
+    .footer-logo img {
+      height: 48px;
+      filter: brightness(1.1);
+      margin-bottom: 1rem;
+    }
+    .footer__single-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin: 1rem 0;
+    }
+    .footer__single-meta a {
+      color: #aaa;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: color 0.2s;
+    }
+    .footer__single-meta a:hover { color: #f47b20; }
+    .footer__single-meta i { width: 18px; color: #f47b20; }
+    .footer__cta .btn--secondary {
+      background: transparent;
+      border: 1px solid #f47b20;
+      color: #f47b20;
+      padding: 0.6rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      transition: 0.25s;
+    }
+    .footer__cta .btn--secondary:hover {
+      background: #f47b20;
+      color: #0b0b0b;
+    }
+    .footer__single-intro h5 {
+      color: #fff;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .footer__single-content ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .footer__single-content ul li a {
+      color: #aaa;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+    .footer__single-content ul li a:hover { color: #f47b20; }
+    .footer__single-content p {
+      color: #aaa;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .input-email {
+      display: flex;
+      align-items: center;
+      background: #1a1a1a;
+      border-radius: 40px;
+      border: 1px solid #2a2a2a;
+      overflow: hidden;
+      transition: 0.2s;
+    }
+    .input-email:focus-within { border-color: #f47b20; }
+    .input-email input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      color: #eee;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .input-email input::placeholder { color: #666; }
+    .input-email .subscribe {
+      background: #f47b20;
+      color: #0b0b0b;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+    }
+    .input-email .subscribe:hover { background: #ff8c2e; }
+    .footer__copyright {
+      border-top: 1px solid #1e1e1e;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer__copyright-text p {
+      color: #777;
+      font-size: 0.85rem;
+    }
+    .footer__copyright-text p a { color: #f47b20; }
+    .social {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .social a {
+      color: #888;
+      font-size: 1rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+    .social a:hover {
+      background: #f47b20;
+      color: #0b0b0b;
+      border-color: #f47b20;
+    }
+
+    /* ===== MAIN CONTENT (contact page) ===== */
+    .branditude-contact {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 3rem;
+    }
+
+    /* HERO */
+    .hero-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.5rem 0 3rem;
+      border-bottom: 1px solid #1f1f1f;
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+    }
+    .hero-content {
+      flex: 1 1 55%;
+      z-index: 2;
+    }
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #f47b20;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin: 0.5rem 0 1rem;
+    }
+    .hero-content h1 i {
+      color: #f47b20;
+      font-style: normal;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #bcbcbc;
+      max-width: 550px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .btn-primary {
+      background: #f47b20;
+      border: none;
+      color: #0b0b0b;
+      font-weight: 600;
+      padding: 0.8rem 2.2rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 0 15px rgba(244, 123, 32, 0.2);
+    }
+    .btn-primary:hover {
+      background: #ff8c2e;
+      transform: scale(1.03);
+      box-shadow: 0 0 30px rgba(244, 123, 32, 0.4);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #3a3a3a;
+      color: #e0e0e0;
+      font-weight: 500;
+      padding: 0.8rem 2.2rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-secondary:hover {
+      border-color: #f47b20;
+      color: #f47b20;
+      background: rgba(244, 123, 32, 0.05);
+    }
+    .hero-visual {
+      flex: 1 1 35%;
+      min-width: 200px;
+      position: relative;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .floating-elements {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .float-icon {
+      position: absolute;
+      color: #f47b20;
+      font-size: 1.8rem;
+      opacity: 0.6;
+      animation: floatUp 6s infinite alternate ease-in-out;
+    }
+    .float-icon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; font-size: 2.2rem; }
+    .float-icon:nth-child(2) { top: 60%; left: 70%; animation-delay: 0.8s; font-size: 1.6rem; }
+    .float-icon:nth-child(3) { top: 20%; left: 80%; animation-delay: 1.6s; font-size: 2.8rem; opacity: 0.4; }
+    .float-icon:nth-child(4) { top: 70%; left: 20%; animation-delay: 2.4s; font-size: 1.4rem; }
+    .float-icon:nth-child(5) { top: 40%; left: 50%; animation-delay: 3.2s; font-size: 1.2rem; opacity: 0.3; }
+    .float-icon:nth-child(6) { top: 5%; left: 50%; animation-delay: 0.4s; font-size: 1.9rem; }
+    .glow-orange {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(244,123,32,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      animation: pulseGlow 4s infinite alternate;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-18px) rotate(6deg); }
+    }
+    @keyframes pulseGlow {
+      0% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.9); }
+      100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.3); }
+    }
+
+    /* Intro */
+    .intro-section {
+      padding: 3.5rem 0 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .intro-section h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .intro-section h2 i { color: #f47b20; }
+    .intro-section p {
+      max-width: 600px;
+      margin: 0.8rem auto 0;
+      color: #b5b5b5;
+      font-size: 1.05rem;
+    }
+    .animated-line {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #f47b20, transparent);
+      margin: 1rem auto 0;
+      border-radius: 4px;
+    }
+
+    /* Contact two column */
+    .contact-main {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      padding: 3rem 0 2rem;
+    }
+    .contact-left {
+      flex: 1 1 40%;
+    }
+    .contact-left h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .contact-left > p {
+      color: #b5b5b5;
+      margin-bottom: 2rem;
+      max-width: 400px;
+    }
+    .contact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-card {
+      background: #151515;
+      border: 1px solid #242424;
+      border-radius: 16px;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+    .contact-card:hover {
+      transform: translateY(-4px);
+      border-color: #f47b20;
+      box-shadow: 0 6px 20px rgba(244,123,32,0.08);
+    }
+    .contact-card .icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(244,123,32,0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f47b20;
+      font-size: 1.2rem;
+    }
+    .contact-card:hover .icon { background: rgba(244,123,32,0.25); }
+    .contact-card .info h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #888;
+      margin-bottom: 0.1rem;
+    }
+    .contact-card .info p, .contact-card .info a {
+      color: #eee;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .contact-card .info a:hover { color: #f47b20; }
+    .social-icons {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    .social-icons a {
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ccc;
+      transition: 0.25s;
+      font-size: 1rem;
+      border: 1px solid #2a2a2a;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      background: #f47b20;
+      color: #0b0b0b;
+      border-color: #f47b20;
+      transform: translateY(-3px);
+    }
+    .contact-right {
+      flex: 1 1 50%;
+      background: #121212;
+      padding: 2rem 2.2rem;
+      border-radius: 28px;
+      border: 1px solid #242424;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    }
+    .contact-right h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.8rem;
+      font-weight: 600;
+    }
+    .form-group {
+      margin-bottom: 1.4rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      color: #aaa;
+      margin-bottom: 0.3rem;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      background: #1d1d1d;
+      border: 1px solid #2c2c2c;
+      border-radius: 14px;
+      padding: 0.8rem 1.2rem;
+      color: #f0f0f0;
+      font-size: 0.95rem;
+      transition: all 0.25s;
+      outline: none;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: #f47b20;
+      box-shadow: 0 0 0 4px rgba(244,123,32,0.15);
+      background: #222;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+    .form-group select {
+      appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path fill="%23f47b20" d="M6 8L0 0h12z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 1.2rem center;
+      background-size: 12px;
+    }
+    .submit-btn {
+      background: #f47b20;
+      border: none;
+      color: #0b0b0b;
+      font-weight: 700;
+      padding: 0.9rem 2.5rem;
+      border-radius: 60px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 0.6rem;
+      letter-spacing: 0.3px;
+    }
+    .submit-btn:hover {
+      background: #ff8c2e;
+      transform: scale(1.02);
+      box-shadow: 0 8px 30px rgba(244,123,32,0.3);
+    }
+    .map-placeholder {
+      background: #1a1a1a;
+      border-radius: 24px;
+      height: 240px;
+      margin: 1.5rem 0 0;
+      border: 1px solid #2a2a2a;
+      overflow: hidden;
+    }
+    .map-placeholder iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Features */
+    .features-section {
+      padding: 3.5rem 0 2rem;
+      text-align: center;
+    }
+    .features-section h2 {
+      font-size: 2.2rem;
+      font-weight: 600;
+    }
+    .features-section h2 i { color: #f47b20; }
+    .features-section .sub {
+      color: #aaa;
+      margin-bottom: 2.2rem;
+      font-size: 1.1rem;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.8rem;
+    }
+    .feature-card {
+      background: #131313;
+      border-radius: 20px;
+      padding: 1.8rem 1.2rem;
+      border: 1px solid #222;
+      transition: all 0.3s;
+      text-align: left;
+    }
+    .feature-card:hover {
+      transform: translateY(-8px);
+      border-color: #f47b20;
+      box-shadow: 0 8px 30px rgba(244,123,32,0.06);
+    }
+    .feature-card .icon {
+      font-size: 2rem;
+      color: #f47b20;
+      margin-bottom: 0.8rem;
+    }
+    .feature-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: #fff;
+    }
+    .feature-card p {
+      color: #aaa;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Trust */
+    .trust-section {
+      background: #0f0f0f;
+      border-radius: 32px;
+      padding: 2.5rem 2rem;
+      margin: 2.5rem 0;
+      border: 1px solid #202020;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .trust-section .left {
+      flex: 1 1 60%;
+    }
+    .trust-section .left h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    .trust-section .left p {
+      color: #b0b0b0;
+      max-width: 450px;
+    }
+    .trust-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2rem;
+      margin-top: 1rem;
+    }
+    .trust-points span {
+      color: #ddd;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .trust-points i { color: #f47b20; }
+
+    /* FAQ */
+    .faq-section {
+      padding: 2.5rem 0 2rem;
+    }
+    .faq-section h2 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .faq-item {
+      background: #131313;
+      border-radius: 16px;
+      margin-bottom: 0.8rem;
+      border: 1px solid #252525;
+      overflow: hidden;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #eee;
+      transition: 0.2s;
+    }
+    .faq-question:hover { background: #1c1c1c; }
+    .faq-question i {
+      color: #f47b20;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+    .faq-answer {
+      max-height: 0;
+      padding: 0 1.5rem;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+      color: #b5b5b5;
+      line-height: 1.6;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 0 1.5rem 1.5rem;
+    }
+    .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+    /* Final CTA */
+    .final-cta {
+      background: #0a0a0a;
+      border-radius: 40px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      margin: 2.5rem 0 1rem;
+      border: 1px solid #222;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(244,123,32,0.08) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      border-radius: 50%;
+      animation: pulseGlow 6s infinite alternate;
+    }
+    .final-cta h2 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+    }
+    .final-cta p {
+      color: #b5b5b5;
+      margin: 0.6rem 0 2rem;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .final-cta .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-section { flex-direction: column; text-align: center; }
+      .hero-content p { margin: 0 auto 1.5rem; }
+      .hero-buttons { justify-content: center; }
+      .hero-visual { height: 140px; }
+      .contact-main { flex-direction: column; }
+      .contact-right { padding: 1.5rem; }
+      .trust-section { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .navbar__menu { display: none; }
+      .open-mobile-menu { display: block; }
+      .footer .row { flex-direction: column; gap: 1.5rem; }
+      .footer__copyright { flex-direction: column; gap: 1rem; text-align: center; }
+      .social { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .branditude-contact { padding: 0 0.8rem; }
+      .contact-card { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HEADER (exact provided markup) ====== -->
+  <header class="header">
+    <div class="primary-navbar cmn-nav">
+      <div class="container" style="max-width:1200px; margin:0 auto; padding:0 1rem;">
+        <div class="row">
+          <div class="col-12" style="width:100%;">
+            <nav class="navbar p-0">
+              <div class="navbar__logo">
+                <a href="index.html" aria-label="go to home">
+                  <img src="assets/images/banner/brandx-removebg-preview.png" alt="Image" style="height:50px;">
+                </a>
+              </div>
+              <div class="navbar__menu">
+                <ul>
+                  <li class="navbar__item navbar__item--has-children nav-fade">
+                    <a href="index.html" aria-label="dropdown menu" class="navbar__dropdown-label">Home</a>
+                    
+                  </li>
+                  <li class="navbar__item navbar__item--has-children nav-fade">
+                    <a href="about-us.html" aria-label="dropdown menu" class="navbar__dropdown-label">About Us</a>
+                    
+                  </li>
+                  <li class="navbar__item navbar__item--has-children nav-fade">
+                    <a href="our-services.html" aria-label="dropdown menu" class="navbar__dropdown-label">Services</a>
+                    
+                  </li>
+                  <li class="navbar__item navbar__item--has-children nav-fade">
+                    <a href="index-four.html" aria-label="dropdown menu" class="navbar__dropdown-label">Projects</a>
+                    
+                  </li>
+                  <li class="navbar__item navbar__item--has-children nav-fade">
+                    <a href="our-teams.html" aria-label="dropdown menu" class="navbar__dropdown-label navbar__dropdown-label-sub">Team</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="navbar__options">
+                <div class="navbar__mobile-options d-none d-sm-flex">
+                  <a href="https://wa.me/919370077727?text=Hi%20Branditude%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Let's Talk</a>
+                </div>
+                <button class="open-mobile-menu d-flex d-xl-none" aria-label="toggle mobile menu">
+                  <i class="fa-light fa-bars-staggered"></i>
+                </button>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <!-- mobile menu -->
+      <div class="mobile-menu">
+        <nav class="mobile-menu__wrapper">
+          <div class="mobile-menu__header nav-fade">
+            <div class="logo"><a href="index.html"><img src="assets/images/banner/brandx-removebg-preview.png" alt style="height:40px;"></a></div>
+            <a href="javascript:void(0)" aria-label="close mobile menu" class="close-mobile-menu"><i class="fa-light fa-xmark-large"></i></a>
+          </div>
+          <div class="mobile-menu__list">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about-us.html">About Us</a></li>
+              <li><a href="our-services.html">Services</a></li>
+              <li><a href="index-four.html">Projects</a></li>
+              <li><a href="our-teams.html">Team</a></li>
+            </ul>
+          </div>
+          <div class="mobile-menu__social social nav-fade">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.pinterest.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </nav>
+      </div>
+      <div class="mobile-menu__backdrop"></div>
+    </div>
+  </header>
+
+  <!-- ====== MAIN CONTENT (contact page) ====== -->
+  <main class="branditude-contact">
+
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-label">✦ LET'S CONNECT</div>
+        <h1>Let's Turn Your Ideas Into <i>Something Extraordinary</i>.</h1>
+        <p>Whether you're looking to grow your brand, build a powerful digital presence, create meaningful campaigns, or explore new possibilities — our team is ready to connect with you.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn-primary">Start a Conversation <i class="fas fa-arrow-right"></i></a>
+          <a href="#" class="btn-secondary">Explore Our Services</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="glow-orange"></div>
+        <div class="floating-elements">
+          <i class="fas fa-comment-dots float-icon"></i>
+          <i class="fas fa-mouse-pointer float-icon"></i>
+          <i class="fas fa-bell float-icon"></i>
+          <i class="fab fa-instagram float-icon"></i>
+          <i class="fas fa-share-nodes float-icon"></i>
+          <i class="fas fa-circle-plus float-icon"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro-section reveal">
+      <h2>Great Things Start With <i>A Conversation</i>.</h2>
+      <p>Every successful brand starts with an idea. Tell us about yours, and let's explore how Branditude can help transform it into a powerful digital experience.</p>
+      <div class="animated-line"></div>
+    </section>
+
+    <!-- CONTACT TWO-COLUMN -->
+    <section class="contact-main">
+      <div class="contact-left reveal">
+        <h3>Let's Build Something <i style="color:#f47b20;">Amazing</i> Together.</h3>
+        <p>Have a project in mind? Looking for the right digital strategy? Or just want to know how Branditude can help your business grow? We'd love to hear from you.</p>
+        <div class="contact-cards">
+          <div class="contact-card">
+            <div class="icon"><i class="fas fa-location-dot"></i></div>
+            <div class="info"><h4>Location</h4><p>KHAMLA, NAGPUR 440025</p></div>
+          </div>
+          <div class="contact-card">
+            <div class="icon"><i class="fas fa-phone-volume"></i></div>
+            <div class="info"><h4>Phone</h4><p><a href="tel:937007727">937007727</a></p></div>
+          </div>
+          <div class="contact-card">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            <div class="info"><h4>Email</h4><p><a href="mailto:branditudeglobal@gmail.com">branditudeglobal@gmail.com</a></p></div>
+          </div>
+          <div class="contact-card">
+            <div class="icon"><i class="fas fa-clock"></i></div>
+            <div class="info"><h4>Working Hours</h4><p>Mon–Sat 10:00 AM – 7:00 PM</p></div>
+          </div>
+        </div>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      <div class="contact-right reveal">
+        <h3>Tell Us About Your Project</h3>
+        <form>
+          <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name"></div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@company.com"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 98765 43210"></div>
+          <div class="form-group"><label>Company / Business Name</label><input type="text" placeholder="Your brand"></div>
+          <div class="form-group"><label>Service Required</label>
+            <select>
+              <option>Social Media Management</option><option>Digital Marketing</option><option>Meta Ads</option>
+              <option>Google Ads</option><option>Website Development</option><option>Branding</option>
+              <option>SEO</option><option>Content Creation</option><option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Tell Us About Your Project</label><textarea placeholder="Share your vision..."></textarea></div>
+          <button type="submit" class="submit-btn">Let's Get Started <i class="fas fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <div class="map-placeholder">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.1310013920556!2d79.0606012!3d21.107342799999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6eff076f6d40018d%3A0x1ac16fe328fcd2b9!2sBRANDITUDE%20GLOBAL!5e0!3m2!1sen!2sin!4v1785827421104" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <!-- FEATURES -->
+    <section class="features-section">
+      <h2>You're Not Just Starting A Project. <i>You're Starting A Partnership.</i></h2>
+      <div class="sub">Built on strategy, creativity, and digital expertise.</div>
+      <div class="feature-grid">
+        <div class="feature-card reveal"><div class="icon"><i class="fas fa-lightbulb"></i></div><h4>Creative Thinking</h4><p>We bring fresh ideas and creative perspectives to every project.</p></div>
+        <div class="feature-card reveal"><div class="icon"><i class="fas fa-sitemap"></i></div><h4>Strategic Approach</h4><p>Every decision is backed by strategy and focused on your business goals.</p></div>
+        <div class="feature-card reveal"><div class="icon"><i class="fas fa-code"></i></div><h4>Digital Expertise</h4><p>From branding to marketing and development, we bring digital solutions together.</p></div>
+        <div class="feature-card reveal"><div class="icon"><i class="fas fa-rocket"></i></div><h4>Growth Focused</h4><p>Our goal is simple — create meaningful digital experiences that support your growth.</p></div>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="trust-section reveal">
+      <div class="left">
+        <h3>Your Next Big Idea Deserves A Conversation.</h3>
+        <p>Whether you're a startup, growing business or established brand, we're here to help you create a stronger digital presence.</p>
+        <div class="trust-points">
+          <span><i class="fas fa-check-circle"></i> Creative Solutions</span>
+          <span><i class="fas fa-check-circle"></i> Strategic Thinking</span>
+          <span><i class="fas fa-check-circle"></i> Complete Digital Support</span>
+          <span><i class="fas fa-check-circle"></i> Growth-Focused Approach</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <h2>Questions? We've Got <i style="color:#f47b20;">Answers</i>.</h2>
+      <div class="faq-item active">
+        <div class="faq-question"><span>What services does Branditude provide?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">Branditude provides a wide range of digital solutions including social media management, digital marketing, Meta Ads, Google Ads, branding, website development, content creation and more.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>How can I get started with Branditude?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">Simply fill out the contact form or reach out to us through our phone, email or social media channels. Our team will connect with you to understand your requirements.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>Do you work with startups and small businesses?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">Yes. We work with businesses of different sizes and create strategies based on their individual goals and requirements.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>Can I request a customized digital marketing strategy?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">Absolutely. Every business is different, so we focus on understanding your goals before recommending the right strategy.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>How soon will your team contact me?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">Our team will review your inquiry and get back to you as soon as possible.</div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta reveal">
+      <h2>Let's Create Something <i style="color:#f47b20;">People Remember</i>.</h2>
+      <p>Your brand has a story. Let's make sure the world sees it.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn-primary">Get In Touch <i class="fas fa-arrow-right"></i></a>
+        <a href="#" class="btn-secondary">View Our Work</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====== FOOTER (exact provided markup) ====== -->
+<footer class="footer section pb-0" data-background="assets/images/footer/footer-bg.png">
+               <div class="container">
+                  <div class="row gaper">
+                     <div class="col-12 col-lg-5 col-xl-6">
+                        <div class="footer__single">
+                           <a href="index.html" class="footer-logo">
+                              <img src="assets/images/banner/brandx-removebg-preview.png" alt="Branditude">
+                           </a>
+                           <div class="footer__single-meta">
+                              <a href="https://maps.app.goo.gl/fCzk3XpfRieBic6k7" target="_blank">
+                                 <i class="fa-sharp fa-solid fa-location-dot"></i>
+                                 KHAMLA,NAGPUR 440025
+                              </a>
+                              <a href="tel:937007727">
+                                 <i class="fa-sharp fa-solid fa-phone-volume"></i>
+                                 9370077727
+                              </a>
+                              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=branditudeglobal@gmail.com"
+                                 target="_blank">
+                                 <i class="fa-sharp fa-solid fa-envelope"></i>
+                                 branditudeglobal@gmail.com
+                              </a>
+                           </div>
+                           <div class="footer__cta text-start">
+                              <a href="contact-us.html" class="btn btn--secondary">book a call now</a>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-12 col-lg-2 col-xl-2">
+                        <div class="footer__single">
+                           <div class="footer__single-intro">
+                              <h5>discover</h5>
+                           </div>
+                           <div class="footer__single-content">
+                              <ul>
+                                 <li>
+                                    <a href="about-us.html">About Us</a>
+                                 </li>
+
+                                 <li>
+                                    <a href="service-single.html">service</a>
+                                 </li>
+                                 <li>
+                                    <a href="contact-us.html">contact-us</a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-12 col-lg-5 col-xl-4">
+                        <div class="footer__single">
+                           <div class="footer__single-intro">
+                              <h5>Subscribe our newsletter</h5>
+                           </div>
+                           <div class="footer__single-content">
+                              <p>Branditude empowers businesses with creative branding, digital marketing, SEO, social
+                                 media management, and advertising solutions that inspire growth and success.</p>
+                                                               <form action="#" method="post">
+                                    <div class="input-email">
+                                       <input type="email" name="subscribe-news" id="subscribeNews"
+                                          placeholder="Enter Your Email" required>
+
+                                       <a href="https://mail.google.com/mail/?view=cm&fs=1&to=branditudeglobal@gmail.com&su=Newsletter%20Subscription&body=Hi%20Branditude%20Global%2C%0A%0AI%20would%20like%20to%20subscribe%20to%20your%20newsletter."
+                                          class="subscribe" target="_blank"
+                                          aria-label="Send email to Branditude Global">
+                                          <i class="fa-sharp fa-solid fa-paper-plane"></i>
+                                       </a>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-12">
+                        <div class="footer__copyright">
+                           <div class="row align-items-center gaper">
+                              <div class="col-12 col-lg-8">
+                                 <div class="footer__copyright-text text-center text-lg-start">
+                                    <p>
+                                       Copyright &copy;
+                                       <span id="copyYear"></span>
+                                       Branditude
+                                       <a href="https://themeforest.net/user/pixel-plus/" target="_blank"></a>
+                                       . All Rights Reserved
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="col-12 col-lg-4">
+                                 <div class="social justify-content-center justify-content-lg-end">
+                                    <a href="https://www.facebook.com/" target="_blank">
+                                       <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://www.twitter.com/" target="_blank">
+                                       <i class="fa-brands fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.pinterest.com/" target="_blank">
+                                       <i class="fa-brands fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/" target="_blank">
+                                       <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </footer>
+
+  <!-- ====== SCRIPTS ====== -->
+  <script>
+    (function() {
+      // Reveal on scroll
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.15 });
+      reveals.forEach(el => observer.observe(el));
+
+      // FAQ accordion
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const q = item.querySelector('.faq-question');
+        q.addEventListener('click', function() {
+          const isActive = item.classList.contains('active');
+          faqItems.forEach(i => i.classList.remove('active'));
+          if (!isActive) item.classList.add('active');
+        });
+      });
+
+      // Mobile menu toggle (simple)
+      const openBtn = document.querySelector('.open-mobile-menu');
+      const closeBtn = document.querySelector('.close-mobile-menu');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      const backdrop = document.querySelector('.mobile-menu__backdrop');
+      if (openBtn && mobileMenu && backdrop) {
+        openBtn.addEventListener('click', () => {
+          mobileMenu.classList.add('open');
+          backdrop.classList.add('active');
+        });
+        closeBtn.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          backdrop.classList.remove('active');
+        });
+        backdrop.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          backdrop.classList.remove('active');
+        });
+      }
+
+      // Set current year in footer
+      const yearSpan = document.getElementById('copyYear');
+      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

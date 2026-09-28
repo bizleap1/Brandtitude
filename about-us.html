@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Branditude · About Us</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ========== RESET & BASE ========== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0b0b0b;
+      color: #f0f0f0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ========== HEADER ========== */
+    .header {
+      background: #0d0d0d;
+      border-bottom: 1px solid #1f1f1f;
+      padding: 0.6rem 0;
+    }
+    .primary-navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .navbar__logo a { display: block; }
+    .navbar__logo img {
+      height: 80px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      filter: brightness(1.1) drop-shadow(0 0 15px rgba(244,123,32,0.15));
+      transition: transform 0.3s;
+    }
+    .navbar__logo img:hover {
+      transform: scale(1.05);
+    }
+    .navbar__menu { display: flex; align-items: center; }
+    .navbar__menu > ul { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .navbar__item { position: relative; }
+    .navbar__dropdown-label {
+      color: #ccc;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.6rem 1rem;
+      display: block;
+      transition: color 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .navbar__dropdown-label:hover { color: #f47b20; }
+    .navbar__sub-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #151515;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 0.6rem 0;
+      min-width: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: all 0.25s ease;
+      z-index: 100;
+    }
+    .navbar__item:hover .navbar__sub-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .navbar__sub-menu li a {
+      color: #ccc;
+      padding: 0.5rem 1.2rem;
+      display: block;
+      font-size: 0.85rem;
+      transition: 0.15s;
+    }
+    .navbar__sub-menu li a:hover { color: #f47b20; background: #1f1f1f; }
+    .navbar__options { display: flex; align-items: center; gap: 1rem; }
+    .navbar__mobile-options .btn--secondary {
+      background: transparent;
+      border: 1px solid #f47b20;
+      color: #f47b20;
+      padding: 0.5rem 1.4rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+    .navbar__mobile-options .btn--secondary:hover { background: #f47b20; color: #0b0b0b; }
+    .open-mobile-menu {
+      background: transparent;
+      border: none;
+      color: #ccc;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: none;
+    }
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 320px;
+      height: 100%;
+      background: #111;
+      border-left: 1px solid #2a2a2a;
+      transition: right 0.35s ease;
+      z-index: 999;
+      padding: 2rem 1.5rem;
+      overflow-y: auto;
+    }
+    .mobile-menu.open { right: 0; }
+    .mobile-menu__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .mobile-menu__header .logo img { height: 40px; }
+    .close-mobile-menu { color: #ccc; font-size: 1.6rem; }
+    .mobile-menu__list ul { display: flex; flex-direction: column; gap: 0.8rem; }
+    .mobile-menu__list ul li a {
+      color: #ddd;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      display: block;
+      border-bottom: 1px solid #222;
+    }
+    .mobile-menu__social { margin-top: 2rem; display: flex; gap: 1rem; }
+    .mobile-menu__social a { color: #aaa; font-size: 1.2rem; transition: 0.2s; }
+    .mobile-menu__social a:hover { color: #f47b20; }
+    .mobile-menu__backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+    .mobile-menu__backdrop.active { opacity: 1; visibility: visible; }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: #0c0c0c;
+      border-top: 1px solid #1e1e1e;
+      padding: 3rem 1.5rem 1.5rem;
+    }
+    .footer .container { max-width: 1200px; margin: 0 auto; }
+    .footer .row { display: flex; flex-wrap: wrap; gap: 2rem; }
+    .footer .row.gaper { gap: 2.5rem; }
+    .footer__single { flex: 1 1 200px; }
+    .footer-logo img { height: 48px; filter: brightness(1.1); margin-bottom: 1rem; }
+    .footer__single-meta { display: flex; flex-direction: column; gap: 0.6rem; margin: 1rem 0; }
+    .footer__single-meta a {
+      color: #aaa;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: color 0.2s;
+    }
+    .footer__single-meta a:hover { color: #f47b20; }
+    .footer__single-meta i { width: 18px; color: #f47b20; }
+    .footer__cta .btn--secondary {
+      background: transparent;
+      border: 1px solid #f47b20;
+      color: #f47b20;
+      padding: 0.6rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      transition: 0.25s;
+    }
+    .footer__cta .btn--secondary:hover { background: #f47b20; color: #0b0b0b; }
+    .footer__single-intro h5 {
+      color: #fff;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .footer__single-content ul { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer__single-content ul li a { color: #aaa; font-size: 0.9rem; transition: 0.2s; }
+    .footer__single-content ul li a:hover { color: #f47b20; }
+    .footer__single-content p { color: #aaa; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; }
+    .input-email {
+      display: flex;
+      align-items: center;
+      background: #1a1a1a;
+      border-radius: 40px;
+      border: 1px solid #2a2a2a;
+      overflow: hidden;
+      transition: 0.2s;
+    }
+    .input-email:focus-within { border-color: #f47b20; }
+    .input-email input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      color: #eee;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .input-email input::placeholder { color: #666; }
+    .input-email .subscribe {
+      background: #f47b20;
+      color: #0b0b0b;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+    }
+    .input-email .subscribe:hover { background: #ff8c2e; }
+    .footer__copyright {
+      border-top: 1px solid #1e1e1e;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer__copyright-text p { color: #777; font-size: 0.85rem; }
+    .footer__copyright-text p a { color: #f47b20; }
+    .social { display: flex; gap: 0.8rem; }
+    .social a {
+      color: #888;
+      font-size: 1rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+    .social a:hover { background: #f47b20; color: #0b0b0b; border-color: #f47b20; }
+
+    /* ========== MAIN CONTENT ========== */
+    .branditude-about {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 3rem;
+    }
+
+    /* ---- HERO ---- */
+    .about-hero {
+      padding: 2.5rem 0 3rem;
+      border-bottom: 1px solid #1f1f1f;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero-content { max-width: 700px; }
+    .about-hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #f47b20;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .about-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin: 0.5rem 0 1rem;
+    }
+    .about-hero h1 i { color: #f47b20; font-style: normal; }
+    .about-hero p {
+      font-size: 1.1rem;
+      color: #bcbcbc;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+    .about-hero .glow-orange {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(244,123,32,0.10) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 20%;
+      right: -50px;
+      animation: pulseGlow 6s infinite alternate;
+    }
+    @keyframes pulseGlow {
+      0% { opacity: 0.3; transform: scale(0.9); }
+      100% { opacity: 0.8; transform: scale(1.2); }
+    }
+
+    /* ---- WHO WE ARE ---- */
+    .about-section { padding: 3.5rem 0 2rem; }
+    .about-section h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+    .about-section h2 i { color: #f47b20; font-style: normal; }
+    .about-section p {
+      color: #b5b5b5;
+      font-size: 1.05rem;
+      max-width: 750px;
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2.2rem;
+    }
+    .about-stat {
+      background: #131313;
+      border-radius: 20px;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid #222;
+      transition: all 0.3s;
+      text-align: center;
+    }
+    .about-stat:hover {
+      transform: translateY(-6px);
+      border-color: #f47b20;
+      box-shadow: 0 8px 30px rgba(244,123,32,0.06);
+    }
+    .about-stat .number {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #f47b20;
+      line-height: 1.2;
+    }
+    .about-stat .label { color: #aaa; font-size: 0.95rem; margin-top: 0.3rem; }
+
+    /* ---- MISSION / VISION / VALUES ---- */
+    .mvv-section { padding: 2rem 0 2.5rem; }
+    .mvv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.8rem;
+    }
+    .mvv-card {
+      background: #131313;
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      border: 1px solid #222;
+      transition: all 0.3s;
+      text-align: left;
+    }
+    .mvv-card:hover {
+      transform: translateY(-8px);
+      border-color: #f47b20;
+      box-shadow: 0 8px 30px rgba(244,123,32,0.06);
+    }
+    .mvv-card .icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(244,123,32,0.12);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f47b20;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .mvv-card h3 { font-size: 1.2rem; color: #fff; margin-bottom: 0.5rem; }
+    .mvv-card p { color: #aaa; font-size: 0.95rem; line-height: 1.6; }
+
+    /* ---- WHY CHOOSE US ---- */
+    .why-section { padding: 2.5rem 0 2rem; }
+    .why-section h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .why-section h2 i { color: #f47b20; font-style: normal; }
+    .why-section .sub {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 2.2rem;
+      font-size: 1.05rem;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.8rem;
+    }
+    .why-card {
+      background: #131313;
+      border-radius: 20px;
+      padding: 1.8rem 1.2rem;
+      border: 1px solid #222;
+      transition: all 0.3s;
+      text-align: left;
+    }
+    .why-card:hover {
+      transform: translateY(-8px);
+      border-color: #f47b20;
+      box-shadow: 0 8px 30px rgba(244,123,32,0.06);
+    }
+    .why-card .icon {
+      font-size: 2rem;
+      color: #f47b20;
+      margin-bottom: 0.8rem;
+    }
+    .why-card h4 { font-size: 1.05rem; margin-bottom: 0.3rem; color: #fff; }
+    .why-card p { color: #aaa; font-size: 0.9rem; line-height: 1.5; }
+
+    /* ---- TEAM (Bigger & Premium) ---- */
+    .team-section { padding: 4rem 0 3rem; }
+    .team-section h2 {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .team-section h2 i { color: #f47b20; font-style: normal; }
+    .team-section .sub {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+    .team-card {
+      background: linear-gradient(150deg, #161616 0%, #0d0d0d 100%);
+      border-radius: 28px;
+      padding: 2.2rem 1.5rem 1.8rem;
+      border: 1px solid #232323;
+      text-align: center;
+      transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      overflow: hidden;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .team-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #f47b20, #ffaa33);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .team-card:hover::before { transform: scaleX(1); }
+    .team-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(244,123,32,0.5);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 50px rgba(244,123,32,0.12);
+    }
+    .team-card .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #1f1f1f;
+      margin: 0 auto 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #f47b20;
+      border: 3px solid #2a2a2a;
+      transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      overflow: hidden;
+      position: relative;
+    }
+    .team-card .avatar::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px dashed rgba(244,123,32,0.2);
+      opacity: 0;
+      transition: opacity 0.5s;
+      animation: spinSlow 20s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .team-card:hover .avatar {
+      border-color: #f47b20;
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(244,123,32,0.35), 0 0 70px rgba(244,123,32,0.15);
+    }
+    .team-card:hover .avatar::after { opacity: 1; }
+    .team-card .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .team-card h4 {
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
+      transition: color 0.3s;
+      line-height: 1.3;
+    }
+    .team-card:hover h4 { color: #f47b20; }
+    .team-card .role {
+      color: #f47b20;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 1.4rem;
+    }
+    .team-card .social-mini {
+      display: flex;
+      justify-content: center;
+      gap: 0.7rem;
+      margin-top: auto;
+    }
+    .team-card .social-mini a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(244,123,32,0.08);
+      border: 1px solid rgba(244,123,32,0.2);
+      color: #f47b20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .team-card .social-mini a:hover {
+      background: #f47b20;
+      border-color: #f47b20;
+      color: #0b0b0b;
+      transform: translateY(-4px) scale(1.1);
+      box-shadow: 0 8px 25px rgba(244,123,32,0.5);
+    }
+
+    /* ---- SPONSORS ---- */
+    .sponsor-section {
+      padding: 2.5rem 0 2rem;
+      text-align: center;
+    }
+    .sponsor-section h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .sponsor-section h2 i { color: #f47b20; font-style: normal; }
+    .sponsor-section .sub {
+      color: #aaa;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+    .sponsor-track {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem 3rem;
+      padding: 1rem 0;
+    }
+    .sponsor-item {
+      background: #131313;
+      border-radius: 16px;
+      padding: 1rem 1.5rem;
+      border: 1px solid #222;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 100px;
+      min-height: 70px;
+    }
+    .sponsor-item:hover {
+      border-color: #f47b20;
+      transform: scale(1.04);
+      box-shadow: 0 6px 20px rgba(244,123,32,0.08);
+    }
+    .sponsor-item img {
+      max-height: 50px;
+      max-width: 120px;
+      filter: brightness(0.9) grayscale(0.3);
+      transition: 0.3s;
+      object-fit: contain;
+    }
+    .sponsor-item:hover img { filter: brightness(1.1) grayscale(0); }
+
+    /* ---- CTA ---- */
+    .about-cta {
+      background: #0a0a0a;
+      border-radius: 40px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      margin: 2.5rem 0 1rem;
+      border: 1px solid #222;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-cta::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(244,123,32,0.08) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      border-radius: 50%;
+      animation: pulseGlow 6s infinite alternate;
+    }
+    .about-cta h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+    }
+    .about-cta h2 i { color: #f47b20; font-style: normal; }
+    .about-cta p {
+      color: #b5b5b5;
+      margin: 0.6rem 0 2rem;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .about-cta .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .btn-primary {
+      background: #f47b20;
+      border: none;
+      color: #0b0b0b;
+      font-weight: 600;
+      padding: 0.8rem 2.2rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 0 15px rgba(244, 123, 32, 0.2);
+    }
+    .btn-primary:hover {
+      background: #ff8c2e;
+      transform: scale(1.03);
+      box-shadow: 0 0 30px rgba(244, 123, 32, 0.4);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #3a3a3a;
+      color: #e0e0e0;
+      font-weight: 500;
+      padding: 0.8rem 2.2rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-secondary:hover {
+      border-color: #f47b20;
+      color: #f47b20;
+      background: rgba(244, 123, 32, 0.05);
+    }
+
+    /* ---- REVEAL ---- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 992px) {
+      .navbar__logo img { height: 70px; }
+      .team-card .avatar { width: 120px; height: 120px; }
+      .team-card h4 { font-size: 1.05rem; }
+      .team-grid { gap: 2rem; }
+    }
+    @media (max-width: 768px) {
+      .navbar__logo img { height: 60px; }
+      .navbar__menu { display: none; }
+      .open-mobile-menu { display: block; }
+      .footer .row { flex-direction: column; gap: 1.5rem; }
+      .footer__copyright { flex-direction: column; gap: 1rem; text-align: center; }
+      .social { justify-content: center; }
+      .about-hero { text-align: center; }
+      .about-hero p { margin: 0 auto; }
+      .about-grid { grid-template-columns: repeat(2, 1fr); }
+      .sponsor-track { gap: 1.5rem; }
+      .team-section { padding: 3rem 0 2rem; }
+      .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+      }
+      .team-card {
+        padding: 1.8rem 1.2rem 1.5rem;
+        min-height: 360px;
+      }
+      .team-card .avatar { width: 110px; height: 110px; }
+      .team-card h4 { font-size: 1rem; }
+      .team-card .role { font-size: 0.78rem; }
+    }
+    @media (max-width: 480px) {
+      .branditude-about { padding: 0 0.8rem; }
+      .navbar__logo img { height: 50px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .mvv-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .team-card { min-height: auto; }
+      .why-grid { grid-template-columns: 1fr; }
+      .sponsor-item { padding: 0.8rem 1rem; min-width: 70px; min-height: 55px; }
+      .sponsor-item img { max-height: 35px; max-width: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HEADER ====== -->
+  <header class="header">
+    <div class="primary-navbar cmn-nav">
+      <div class="container" style="max-width:1200px; margin:0 auto; padding:0 1rem;">
+        <div class="row">
+          <div class="col-12" style="width:100%;">
+            <nav class="navbar p-0">
+              <div class="navbar__logo">
+                <a href="index.html" aria-label="go to home">
+                  <img src="assets/images/banner/brandx-removebg-preview.png" alt="Branditude Logo">
+                </a>
+              </div>
+              <div class="navbar__menu">
+                <ul>
+                  <li class="navbar__item navbar__item--has-children nav-fade">
+                    <a href="index.html" aria-label="dropdown menu" class="navbar__dropdown-label">Home</a>
+                    
+                  </li>
+                  <li class="navbar__item navbar__item--has-children nav-fade">
+                    <a href="about-us.html" aria-label="dropdown menu" class="navbar__dropdown-label">About Us</a>
+                    
+                  </li>
+                  <li class="navbar__item navbar__item--has-children nav-fade">
+                    <a href="our-services.html" aria-label="dropdown menu" class="navbar__dropdown-label">Services</a>
+                    
+                  </li>
+                  <li class="navbar__item navbar__item--has-children nav-fade">
+                    <a href="index-four.html" aria-label="dropdown menu" class="navbar__dropdown-label">Projects</a>
+                    
+                  </li>
+                  <li class="navbar__item navbar__item--has-children nav-fade">
+                    <a href="our-teams.html" aria-label="dropdown menu" class="navbar__dropdown-label navbar__dropdown-label-sub">Team</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="navbar__options">
+                <div class="navbar__mobile-options d-none d-sm-flex">
+                  <a href="https://wa.me/919370077727?text=Hi%20Branditude%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Let's Talk</a>
+                </div>
+                <button class="open-mobile-menu d-flex d-xl-none" aria-label="toggle mobile menu">
+                  <i class="fa-light fa-bars-staggered"></i>
+                </button>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <!-- mobile menu -->
+      <div class="mobile-menu">
+        <nav class="mobile-menu__wrapper">
+          <div class="mobile-menu__header nav-fade">
+            <div class="logo"><a href="index.html"><img src="assets/images/banner/brandx-removebg-preview.png" alt style="height:40px;"></a></div>
+            <a href="javascript:void(0)" aria-label="close mobile menu" class="close-mobile-menu"><i class="fa-light fa-xmark-large"></i></a>
+          </div>
+          <div class="mobile-menu__list">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about-us.html">About Us</a></li>
+              <li><a href="our-services.html">Services</a></li>
+              <li><a href="index-four.html">Projects</a></li>
+              <li><a href="our-teams.html">Team</a></li>
+            </ul>
+          </div>
+          <div class="mobile-menu__social social nav-fade">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.pinterest.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </nav>
+      </div>
+      <div class="mobile-menu__backdrop"></div>
+    </div>
+  </header>
+
+  <!-- ====== MAIN CONTENT (About Us) ====== -->
+  <main class="branditude-about">
+
+    <!-- HERO / BANNER -->
+    <section class="about-hero">
+      <div class="glow-orange"></div>
+      <div class="about-hero-content">
+        <div class="about-hero-label">✦ ABOUT BRANDITUDE</div>
+        <h1>We Are A <i>Digital Creative</i> Agency Based In India.</h1>
+        <p>At Branditude, we create result-driven digital strategies that help brands build a stronger online presence. From branding and creative solutions to performance marketing, SEO, and web development, we deliver innovative solutions designed to accelerate business growth in the digital era.</p>
+      </div>
+    </section>
+
+    <!-- WHO WE ARE / STATS -->
+    <section class="about-section reveal">
+      <h2>Who <i>We Are</i></h2>
+      <p>Branditude is a team of passionate creatives, strategists, and developers who believe in the power of digital transformation. We partner with businesses of all sizes to craft meaningful digital experiences that drive real results.</p>
+      <p>Our approach combines creativity with data-driven strategy, ensuring every project we touch delivers measurable impact and lasting value.</p>
+      <div class="about-grid">
+        <div class="about-stat">
+          <div class="number">150+</div>
+          <div class="label">Projects Completed</div>
+        </div>
+        <div class="about-stat">
+          <div class="number">80+</div>
+          <div class="label">Happy Clients</div>
+        </div>
+        <div class="about-stat">
+          <div class="number">5+</div>
+          <div class="label">Years Experience</div>
+        </div>
+        <div class="about-stat">
+          <div class="number">12+</div>
+          <div class="label">Team Members</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION / VISION / VALUES -->
+    <section class="mvv-section reveal">
+      <div class="mvv-grid">
+        <div class="mvv-card">
+          <div class="icon"><i class="fas fa-bullseye"></i></div>
+          <h3>Our Mission</h3>
+          <p>To empower businesses with innovative digital solutions that drive growth, build brand presence, and create meaningful connections with their audience.</p>
+        </div>
+        <div class="mvv-card">
+          <div class="icon"><i class="fas fa-eye"></i></div>
+          <h3>Our Vision</h3>
+          <p>To be a leading digital agency known for creativity, strategy, and measurable results — helping brands thrive in an ever-evolving digital landscape.</p>
+        </div>
+        <div class="mvv-card">
+          <div class="icon"><i class="fas fa-heart"></i></div>
+          <h3>Our Values</h3>
+          <p>Creativity, transparency, collaboration, and a relentless focus on delivering value. We believe in building partnerships, not just projects.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="why-section">
+      <h2>Why Choose <i>Branditude</i>?</h2>
+      <div class="sub">Built on strategy, creativity, and digital expertise.</div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="icon"><i class="fas fa-lightbulb"></i></div>
+          <h4>Creative Thinking</h4>
+          <p>We bring fresh ideas and creative perspectives to every project.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="icon"><i class="fas fa-sitemap"></i></div>
+          <h4>Strategic Approach</h4>
+          <p>Every decision is backed by strategy and focused on your business goals.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="icon"><i class="fas fa-code"></i></div>
+          <h4>Digital Expertise</h4>
+          <p>From branding to marketing and development, we bring digital solutions together.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="icon"><i class="fas fa-rocket"></i></div>
+          <h4>Growth Focused</h4>
+          <p>Our goal is simple — create meaningful digital experiences that support your growth.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team-section">
+      <h2>Meet Our <i>Team</i></h2>
+      <div class="sub">The creative minds behind Branditude.</div>
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="avatar"><img src="assets/images/teams/him.img.jpeg" alt="Himanshu Pimpalkar"></div>
+          <h4>Himanshu Pimpalkar</h4>
+          <div class="role">General Manager</div>
+          <div class="social-mini">
+            <a href="https://www.linkedin.com/in/himanshu-pimpalkar-b3baa3290/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/himanshu.p02/?hl=en"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="avatar"><img src="assets/images/teams/pnk.img.png" alt="Pankaj Mete"></div>
+          <h4>Pankaj Mete</h4>
+          <div class="role">Web Developer</div>
+          <div class="social-mini">
+            <a href="https://www.linkedin.com/in/pankaj-mete-9b9223341/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/__pankajjjj____/?hl=en"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="avatar"><img src="assets/images/teams/raj img.jpeg" alt="Raj Meshram"></div>
+          <h4>Raj Meshram</h4>
+          <div class="role">Graphic Designer</div>
+          <div class="social-mini">
+            <a href="https://www.linkedin.com/in/raj-meshram-613a21270/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/raj_meshram151/?hl=en"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="avatar"><img src="assets/images/teams/img sim.png" alt="Simran Potphode"></div>
+          <h4>Simran Potphode</h4>
+          <div class="role">Frontend Developer</div>
+          <div class="social-mini">
+            <a href="https://www.linkedin.com/in/simran-potphode-76ab5a379/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/sim__rann_/?hl=en"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="avatar"><img src="assets/images/teams/RIYA.png" alt="Moksh Singh"></div>
+          <h4>Riya Francis</h4>
+          <div class="role">UGC Creator</div>
+          <div class="social-mini">
+            <a href="https://www.linkedin.com/in/riya-francis-40b677413/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/riya_francis_03/?hl=en"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+       
+      </div>
+    </section>
+
+    <!-- CLIENTS / SPONSORS -->
+    <!-- ========== CLIENTS & PARTNERS SECTION ========== -->
+<section class="sponsor-section">
+  <div class="sponsor-head">
+    <div class="sponsor-label reveal">✦ TRUSTED BY</div>
+    <h2 class="reveal">Our <i>Clients</i> &amp; <i>Partners</i></h2>
+    <p class="sub reveal">Building successful relationships with industry leaders</p>
+  </div>
+  <div class="sponsor-marquee">
+    <div class="sponsor-track">
+      <div class="sponsor-item"><img src="assets/images/unacademy-logo.avif" alt="Unacademy"></div>
+      <div class="sponsor-item"><img src="assets/images/sponsor/swiggy_zomato_1-removebg-preview-removebg-preview.png" alt="Swiggy Zomato"></div>
+      <div class="sponsor-item"><img src="assets/images/sponsor/Untitled_design-removebg-preview-removebg-preview.png" alt="Client"></div>
+      <div class="sponsor-item"><img src="assets/images/sponsor/LEGAL_WIGAL-removebg-preview-removebg-preview.png" alt="Legal Wigal"></div>
+      <div class="sponsor-item"><img src="assets/images/sponsor/hp_logo-removebg-preview-removebg-preview.png" alt="HP"></div>
+      <div class="sponsor-item"><img src="assets/images/sponsor/The Shake Company.png" alt="The Shake Company"></div>
+      <div class="sponsor-item"><img src="assets/images/unacademy-logo.avif" alt="Unacademy"></div>
+      <div class="sponsor-item"><img src="assets/images/sponsor/swiggy_zomato_1-removebg-preview-removebg-preview.png" alt="Swiggy Zomato"></div>
+      <div class="sponsor-item"><img src="assets/images/sponsor/Untitled_design-removebg-preview-removebg-preview.png" alt="Client"></div>
+      <div class="sponsor-item"><img src="assets/images/sponsor/LEGAL_WIGAL-removebg-preview-removebg-preview.png" alt="Legal Wigal"></div>
+      <div class="sponsor-item"><img src="assets/images/sponsor/hp_logo-removebg-preview-removebg-preview.png" alt="HP"></div>
+      <div class="sponsor-item"><img src="assets/images/sponsor/The Shake Company.png" alt="The Shake Company"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== CLIENTS & PARTNERS CSS ========== -->
+<style>
+  /* Section wrapper */
+  .sponsor-section {
+    padding: 5rem 0 4.5rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .sponsor-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px; height: 500px;
+    background: radial-gradient(ellipse, rgba(244,123,32,0.05) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* Heading block */
+  .sponsor-head {
+    max-width: 700px;
+    margin: 0 auto 3.5rem;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 2;
+  }
+  .sponsor-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #f47b20;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .sponsor-label::before,
+  .sponsor-label::after {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: rgba(244,123,32,0.4);
+  }
+  .sponsor-section h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.9rem;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .sponsor-section h2 i {
+    color: #f47b20;
+    font-style: normal;
+    position: relative;
+  }
+  .sponsor-section .sub {
+    color: #999;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Marquee wrapper (fade edges) */
+  .sponsor-marquee {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    padding: 0.5rem 0;
+  }
+
+  /* Scrolling track */
+  .sponsor-track {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    animation: sponsorScroll 40s linear infinite;
+  }
+  .sponsor-marquee:hover .sponsor-track {
+    animation-play-state: paused;
+  }
+  @keyframes sponsorScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Individual logo card */
+  .sponsor-item {
+    flex-shrink: 0;
+    background: linear-gradient(150deg, #161616 0%, #0d0d0d 100%);
+    border: 1px solid #232323;
+    border-radius: 20px;
+    padding: 1.8rem 2.8rem;
+    min-width: 240px;
+    min-height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  /* Top border accent on hover */
+  .sponsor-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, #f47b20, transparent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Radial glow on hover */
+  .sponsor-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(244,123,32,0.10) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    border-radius: 20px;
+  }
+
+  .sponsor-item:hover::before { transform: scaleX(1); }
+  .sponsor-item:hover::after { opacity: 1; }
+  .sponsor-item:hover {
+    border-color: rgba(244,123,32,0.4);
+    transform: translateY(-6px) scale(1.03);
+    box-shadow:
+      0 20px 45px rgba(0,0,0,0.5),
+      0 0 40px rgba(244,123,32,0.10);
+  }
+
+  /* Logo image */
+  .sponsor-item img {
+    max-height: 100px;
+    max-width: 150px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: brightness(0.85) grayscale(0.5);
+    opacity: 0.75;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    z-index: 2;
+  }
+  .sponsor-item:hover img {
+    filter: brightness(1.1) grayscale(0);
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  /* Responsive */
+  @media (max-width: 992px) {
+    .sponsor-item {
+      min-width: 200px;
+      min-height: 110px;
+      padding: 1.5rem 2rem;
+    }
+    .sponsor-item img { max-height: 50px; max-width: 120px; }
+    .sponsor-track { gap: 1.5rem; animation-duration: 32s; }
+  }
+
+  @media (max-width: 768px) {
+    .sponsor-section { padding: 3.5rem 0 3rem; }
+    .sponsor-head { margin-bottom: 2.5rem; }
+    .sponsor-item {
+      min-width: 170px;
+      min-height: 95px;
+      padding: 1.2rem 1.6rem;
+      border-radius: 16px;
+    }
+    .sponsor-item img { max-height: 42px; max-width: 100px; }
+    .sponsor-track { gap: 1.2rem; animation-duration: 26s; }
+  }
+
+  @media (max-width: 480px) {
+    .sponsor-section { padding: 3rem 0 2.5rem; }
+    .sponsor-item {
+      min-width: 140px;
+      min-height: 80px;
+      padding: 1rem 1.2rem;
+    }
+    .sponsor-item img { max-height: 36px; max-width: 80px; }
+    .sponsor-label::before,
+    .sponsor-label::after { width: 18px; }
+  }
+</style>
+
+    <!-- CTA -->
+    <section class="about-cta reveal">
+      <h2>Let's Create Something <i>People Remember</i>.</h2>
+      <p>Your brand has a story. Let's make sure the world sees it.</p>
+      <div class="cta-buttons">
+        <a href="contact-us.html" class="btn-primary">Get In Touch <i class="fas fa-arrow-right"></i></a>
+        <a href="index-four.html" class="btn-secondary">View Our Work</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer section pb-0" data-background="assets/images/footer/footer-bg.png">
+    <div class="container">
+      <div class="row gaper">
+        <div class="col-12 col-lg-5 col-xl-6">
+          <div class="footer__single">
+            <a href="index.html" class="footer-logo">
+              <img src="assets/images/banner/brandx-removebg-preview.png" alt="Branditude">
+            </a>
+            <div class="footer__single-meta">
+              <a href="https://maps.app.goo.gl/fCzk3XpfRieBic6k7" target="_blank">
+                <i class="fa-sharp fa-solid fa-location-dot"></i> KHAMLA,NAGPUR 440025
+              </a>
+              <a href="tel:937007727">
+                <i class="fa-sharp fa-solid fa-phone-volume"></i> 9370077727
+              </a>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=branditudeglobal@gmail.com" target="_blank">
+                <i class="fa-sharp fa-solid fa-envelope"></i> branditudeglobal@gmail.com
+              </a>
+            </div>
+            <div class="footer__cta text-start">
+              <a href="contact-us.html" class="btn btn--secondary">book a call now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-2 col-xl-2">
+          <div class="footer__single">
+            <div class="footer__single-intro"><h5>discover</h5></div>
+            <div class="footer__single-content">
+              <ul>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="service-single.html">service</a></li>
+                <li><a href="contact-us.html">contact-us</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-5 col-xl-4">
+          <div class="footer__single">
+            <div class="footer__single-intro"><h5>Subscribe our newsletter</h5></div>
+            <div class="footer__single-content">
+              <p>Branditude empowers businesses with creative branding, digital marketing, SEO, social media management, and advertising solutions that inspire growth and success.</p>
+              <form action="#" method="post">
+                <div class="input-email">
+                  <input type="email" name="subscribe-news" id="subscribeNews" placeholder="Enter Your Email" required>
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=branditudeglobal@gmail.com&su=Newsletter%20Subscription&body=Hi%20Branditude%20Global%2C%0A%0AI%20would%20like%20to%20subscribe%20to%20your%20newsletter." class="subscribe" target="_blank" aria-label="Send email to Branditude Global">
+                    <i class="fa-sharp fa-solid fa-paper-plane"></i>
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="footer__copyright">
+            <div class="row align-items-center gaper">
+              <div class="col-12 col-lg-8">
+                <div class="footer__copyright-text text-center text-lg-start">
+                  <p>Copyright &copy; <span id="copyYear"></span> Branditude <a href="https://themeforest.net/user/pixel-plus/" target="_blank"></a>. All Rights Reserved</p>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4">
+                <div class="social justify-content-center justify-content-lg-end">
+                  <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                  <a href="https://www.twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="https://www.pinterest.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                  <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPTS ====== -->
+  <script>
+    (function() {
+      // Reveal on scroll
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.15 });
+      reveals.forEach(el => observer.observe(el));
+
+      // Mobile menu toggle
+      const openBtn = document.querySelector('.open-mobile-menu');
+      const closeBtn = document.querySelector('.close-mobile-menu');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      const backdrop = document.querySelector('.mobile-menu__backdrop');
+      if (openBtn && mobileMenu && backdrop) {
+        openBtn.addEventListener('click', () => {
+          mobileMenu.classList.add('open');
+          backdrop.classList.add('active');
+        });
+        closeBtn.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          backdrop.classList.remove('active');
+        });
+        backdrop.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          backdrop.classList.remove('active');
+        });
+      }
+
+      // Dynamic copyright year
+      const yearEl = document.getElementById('copyYear');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
